@@ -97,11 +97,9 @@ public class CustomerServiceImpl implements CustomerService {
         }else if(!customerDAO.checkAccStatus(customer, name)){
             throw new ServiceException("Account must exist and have been accepted by a banker to be used");
         }else{
-            try{
+
                 customerDAO.withdraw(name, customer, amount);
-            }catch(ServiceException e){
-                log.debug(e);
-            }
+
 
         }
 

@@ -14,15 +14,15 @@ dao/BankAccDAOImpl.java
  dao.BankAccDAOImpl
 service/BankAccServiceImpl.java
  service.BankAccServiceImpl
-service/CustomerServiceImpl.java
- service.CustomerServiceImpl
+dao/BankAccDAO.java
+ dao.BankAccDAO
 dao/CustomerDAOImpl.java
  dao.CustomerDAOImpl
 service/BankAccService.java
  service.BankAccService
 dao/CustomerDAO.java
  dao.CustomerDAO
-dao/BankAccDAO.java
- dao.BankAccDAO
 driver/Main.java
  driver.Main
+service/CustomerServiceImpl.java
+ service.CustomerServiceImpl

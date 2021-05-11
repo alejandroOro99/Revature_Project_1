@@ -2,6 +2,7 @@ package driver;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import controller.JlinController;
 import dao.CustomerDAOImpl;
+import exception.ServiceException;
 import io.javalin.Javalin;
 import model.Customer;
 import org.apache.log4j.Logger;
@@ -94,6 +95,37 @@ public class Main {
             }catch(Exception e){
                 log.debug(e);
                 ctx.result("exception");
+            }
+
+        });
+
+        //Deposit feature
+        app.post("/customer/deposit",ctx->{
+            try{
+                jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
+                String accName = jsonObject.get("accName").toString();
+                long depositAmount = Long.parseLong(jsonObject.get("depositAmount").toString());
+
+                ctx.result(String.valueOf(customerService.deposit(accName, depositAmount, customer)));
+
+            }catch(Exception e){
+                System.out.println(e);
+                ctx.result(String.valueOf(e));
+            }
+        });
+
+        //Withdraw feature
+        app.post("/customer/withdraw",ctx->{
+
+            try{
+                jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
+                String accName = jsonObject.get("accName").toString();
+                long withdrawAmount = Long.parseLong(jsonObject.get("withdrawAmount").toString());
+
+                customerService.withdraw(accName, customer, withdrawAmount);
+                ctx.result("success");
+            }catch(ServiceException e){
+                ctx.result(String.valueOf(e));
             }
 
         });
