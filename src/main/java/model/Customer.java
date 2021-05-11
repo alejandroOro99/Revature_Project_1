@@ -21,6 +21,14 @@ public class Customer {
         this.bankAccId = bankAccId;
     }
 
+    public Customer(){
+        this.bankAccount = null;
+        this.firstName = "ale";
+        this.lastName = "oro";
+        this.username = "1234";
+        this.password = "12345";
+        this.bankAccId = 7996767966l;
+    }
     public Customer(long bankAccId){
         this.bankAccId = bankAccId;
     }
