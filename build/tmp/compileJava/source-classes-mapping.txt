@@ -4,8 +4,8 @@ db_connection/DBConnection.java
  db_connection.DBConnection
 exception/ServiceException.java
  exception.ServiceException
-controller/JlinController.java
- controller.JlinController
+service/CustomerServiceImpl.java
+ service.CustomerServiceImpl
 model/Customer.java
  model.Customer
 service/CustomerService.java
@@ -22,7 +22,7 @@ service/BankAccService.java
  service.BankAccService
 dao/CustomerDAO.java
  dao.CustomerDAO
-service/CustomerServiceImpl.java
- service.CustomerServiceImpl
+controller/JlinController.java
+ controller.JlinController
 driver/Main.java
  driver.Main

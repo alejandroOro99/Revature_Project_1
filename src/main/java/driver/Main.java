@@ -64,7 +64,7 @@ public class Main {
 
             if(customerService.isUsernameAvailable(username)){
                 customerService.applyCustomerAcc(firstname, lastname, username, password);
-                ctx.result("account created");
+                ctx.json("account created");
             }else{
                 ctx.result("username not available");
             }
@@ -75,17 +75,22 @@ public class Main {
         //Login to customer account feature
         app.post("/customer/login",ctx->{
 
-            jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
-            String username = jsonObject.get("username").toString();
-            String password = jsonObject.get("password").toString();
-            customer = customerService.login(username, password);
+            try{
+                jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
+                String username = jsonObject.get("username").toString();
+                String password = jsonObject.get("password").toString();
+                customer = customerService.login(username, password);
 
-            if(customer != null){
-                ctx.result("login success");
-            }else{
-                ctx.result("login failed");
-                customer = null;
+                if(customer != null){
+                    ctx.json("login success");
+                }else{
+                    ctx.json("login failed");
+                    customer = null;
+                }
+            }catch(Exception e){
+                e.printStackTrace();
             }
+
         });
 
         //Apply for bank account feature
@@ -112,12 +117,13 @@ public class Main {
                 jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
                 String accName = jsonObject.get("accName").toString();
                 long depositAmount = Long.parseLong(jsonObject.get("depositAmount").toString());
-
-                ctx.result(String.valueOf(customerService.deposit(accName, depositAmount, customer)));
+                System.out.println(accName+" "+depositAmount);
+                System.out.println(customer);
+                ctx.json(String.valueOf(customerService.deposit(accName, depositAmount, customer)));
 
             }catch(Exception e){
-                System.out.println(e);
-                ctx.result(String.valueOf(e));
+                e.printStackTrace();
+                ctx.json(String.valueOf(e));
             }
         });
 
@@ -143,7 +149,7 @@ public class Main {
                 String viewAccBalanceName = ctx.pathParam("accName");
                 ctx.json(customerService.viewAccBalance(viewAccBalanceName));
             }catch(Exception e){
-                ctx.result(String.valueOf(e));
+                ctx.json(String.valueOf(e));
             }
         });
 
