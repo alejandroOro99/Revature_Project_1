@@ -60,6 +60,8 @@ public class CustomerServiceImpl implements CustomerService {
             throw new ServiceException("Account must exist and be accepted by a banker");
         }else if(customerDAO.viewAccBalance(senderName) < amount){
             throw new ServiceException("Can't post a transfer that results in a negative balance");
+        }else if(amount < 0){
+            throw new ServiceException("Can't post negative amounts");
         }else{
             customerDAO.postTransfer(sender, recipient, amount, senderName);
         }
@@ -97,10 +99,7 @@ public class CustomerServiceImpl implements CustomerService {
         }else if(!customerDAO.checkAccStatus(customer, name)){
             throw new ServiceException("Account must exist and have been accepted by a banker to be used");
         }else{
-
                 customerDAO.withdraw(name, customer, amount);
-
-
         }
 
     }

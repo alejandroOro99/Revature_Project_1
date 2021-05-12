@@ -130,5 +130,34 @@ public class Main {
 
         });
 
+        //View acc feature
+        app.get("/customer/:accName",ctx->{
+            try{
+                String viewAccBalanceName = ctx.pathParam("accName");
+                ctx.json(customerService.viewAccBalance(viewAccBalanceName));
+            }catch(Exception e){
+                ctx.result(String.valueOf(e));
+            }
+        });
+
+        //Post transfer feature
+        app.post("/customer/postTransfer",ctx->{
+            try{
+                jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
+                String username = jsonObject.get("username").toString();
+                double transferAmount = Double.parseDouble(jsonObject.get("transferAmount").toString());
+                String senderAcc = jsonObject.get("senderAcc").toString();
+                Customer recipient = customerService.getCustomerByUsername(username);
+
+                customerService.postTransfer(customer, recipient, transferAmount, senderAcc);
+
+            }catch(NumberFormatException | ServiceException e){
+                ctx.result(String.valueOf(e));
+            }
+        });
+
+        //Customer Handle transfers feature
+
+
     }
 }
