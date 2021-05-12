@@ -54,7 +54,7 @@ public class Main {
         //Apply for customer account feature
         app.post("/customer/apply",ctx->{
 
-            //These lines deserialize the request and
+            //These lines deserialize the request and store the fields
             jsonObject = (JsonObject)Jsoner.deserialize(ctx.body());
 
             String username = jsonObject.get("username").toString();
@@ -66,7 +66,7 @@ public class Main {
                 customerService.applyCustomerAcc(firstname, lastname, username, password);
                 ctx.json("account created");
             }else{
-                ctx.result("username not available");
+                ctx.json("username not available");
             }
 
 
@@ -136,9 +136,9 @@ public class Main {
                 long withdrawAmount = Long.parseLong(jsonObject.get("withdrawAmount").toString());
 
                 customerService.withdraw(accName, customer, withdrawAmount);
-                ctx.result("success");
+                ctx.json("success");
             }catch(ServiceException e){
-                ctx.result(String.valueOf(e));
+                ctx.json(String.valueOf(e));
             }
 
         });
