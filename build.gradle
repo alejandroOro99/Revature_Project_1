@@ -39,11 +39,11 @@ dependencies {
 }
 
 jar {
-    archiveBaseName = 'project_zero'
+    archiveBaseName = 'project1'
     archiveVersion =  '0.1.0'
     manifest {
         attributes(
-                'Main-Class': 'tester.Main'
+                'Main-Class': 'driver.Main'
         )
     }
     from {

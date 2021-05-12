@@ -1,11 +1,16 @@
 package driver;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import controller.JlinController;
+import dao.BankAccDAO;
+import dao.BankAccDAOImpl;
+import dao.CustomerDAO;
 import dao.CustomerDAOImpl;
 import exception.ServiceException;
 import io.javalin.Javalin;
 import model.Customer;
 import org.apache.log4j.Logger;
+import service.BankAccService;
+import service.BankAccServiceImpl;
 import service.CustomerService;
 import service.CustomerServiceImpl;
 import com.github.cliftonlabs.json_simple.JsonObject;
@@ -19,6 +24,8 @@ public class Main {
     public static CustomerService customerService = new CustomerServiceImpl();
     public static Customer customer;
     public static JsonObject jsonObject;
+    public static BankAccService bankAccService = new BankAccServiceImpl();
+
     private static final Logger transactions = Logger.getLogger("transactionsLogger");
     private static File file = new File(
             "transactions.log");
@@ -157,7 +164,37 @@ public class Main {
         });
 
         //Customer Handle transfers feature
+        app.post("/customer/handleTransfer",ctx->{
+
+            try{
+                customerService.displayCustomerByTransfer(customer);
+
+                jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
+                String accName = jsonObject.get("accName").toString();
+                String accToDeposit = jsonObject.get("accToDeposit").toString();
+
+                customerService.acceptTransfer(customer,accToDeposit, accName);
+
+            }catch(Exception e){
+                ctx.result(String.valueOf(e));
+            }
+        });
+
+        //Bank account application's handling feature
+        app.get("/employee/applications/:username",ctx->{
+            CustomerDAO customerDAO = new CustomerDAOImpl();
+            log.debug("Enter the username of the customer");
+            String acceptAccUsername = ctx.pathParam("username");
+            Customer acceptAccCustomer = customerDAO.getCustomerByUsername(acceptAccUsername);
+
+            log.debug("Below are the accounts pending acceptance");
+
+            bankAccService.getStatusZeroAccounts(acceptAccCustomer);
+
+            log.debug("Enter the names(separated by a space) of the bank accounts " +
+                    "you would like to approve from those above");
 
 
+        });
     }
 }

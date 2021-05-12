@@ -22,7 +22,7 @@ service/BankAccService.java
  service.BankAccService
 dao/CustomerDAO.java
  dao.CustomerDAO
-driver/Main.java
- driver.Main
 service/CustomerServiceImpl.java
  service.CustomerServiceImpl
+driver/Main.java
+ driver.Main
