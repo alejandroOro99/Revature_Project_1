@@ -67,11 +67,11 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\project_zero-0.1.0.jar;%APP_HOME%\lib\log4j-1.2.17.jar;%APP_HOME%\lib\postgresql-42.2.18.jar;%APP_HOME%\lib\checker-qual-3.5.0.jar
+set CLASSPATH=%APP_HOME%\lib\project1-0.1.0.jar;%APP_HOME%\lib\javalin-3.13.6.jar;%APP_HOME%\lib\slf4j-simple-1.8.0-beta4.jar;%APP_HOME%\lib\jackson-databind-2.10.3.jar;%APP_HOME%\lib\log4j-1.2.17.jar;%APP_HOME%\lib\postgresql-42.2.18.jar;%APP_HOME%\lib\json-simple-3.1.1.jar;%APP_HOME%\lib\json-simple-1.1.1.jar;%APP_HOME%\lib\slf4j-api-1.8.0-beta4.jar;%APP_HOME%\lib\jetty-webapp-9.4.39.v20210325.jar;%APP_HOME%\lib\websocket-server-9.4.39.v20210325.jar;%APP_HOME%\lib\jetty-servlet-9.4.39.v20210325.jar;%APP_HOME%\lib\jetty-security-9.4.39.v20210325.jar;%APP_HOME%\lib\jetty-server-9.4.39.v20210325.jar;%APP_HOME%\lib\kotlin-stdlib-jdk8-1.3.71.jar;%APP_HOME%\lib\jackson-annotations-2.10.3.jar;%APP_HOME%\lib\jackson-core-2.10.3.jar;%APP_HOME%\lib\checker-qual-3.5.0.jar;%APP_HOME%\lib\junit-4.10.jar;%APP_HOME%\lib\websocket-servlet-9.4.39.v20210325.jar;%APP_HOME%\lib\javax.servlet-api-3.1.0.jar;%APP_HOME%\lib\websocket-client-9.4.39.v20210325.jar;%APP_HOME%\lib\jetty-client-9.4.39.v20210325.jar;%APP_HOME%\lib\jetty-http-9.4.39.v20210325.jar;%APP_HOME%\lib\websocket-common-9.4.39.v20210325.jar;%APP_HOME%\lib\jetty-io-9.4.39.v20210325.jar;%APP_HOME%\lib\jetty-xml-9.4.39.v20210325.jar;%APP_HOME%\lib\kotlin-stdlib-jdk7-1.3.71.jar;%APP_HOME%\lib\kotlin-stdlib-1.3.71.jar;%APP_HOME%\lib\hamcrest-core-1.1.jar;%APP_HOME%\lib\jetty-util-ajax-9.4.39.v20210325.jar;%APP_HOME%\lib\jetty-util-9.4.39.v20210325.jar;%APP_HOME%\lib\websocket-api-9.4.39.v20210325.jar;%APP_HOME%\lib\kotlin-stdlib-common-1.3.71.jar;%APP_HOME%\lib\annotations-13.0.jar
 
 
 @rem Execute Project1
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %PROJECT1_OPTS%  -classpath "%CLASSPATH%" tester.Main %*
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %PROJECT1_OPTS%  -classpath "%CLASSPATH%" driver.Main %*
 
 :end
 @rem End local scope for the variables with windows NT shell

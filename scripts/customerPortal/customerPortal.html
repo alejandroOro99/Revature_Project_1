@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = "text/javascript" >  
+        function preventBack() { window.history.forward(); }  
+        setTimeout("preventBack()", 0);  
+        window.onunload = function () { null };  
+    </script> 
+</head>
+<body>
+    
+    <h1 id = "customerPortal">
+
+    </h1>
+    <br>
+    <form name = "viewAccForm">
+        <label>Enter account name to view current balance</label>
+        <input type = "text" name = "viewAccInput">
+        <button type = "button" id = "viewAccBtn">Submit</button>
+    </form>
+    <br>
+    <form name = "depositForm">
+        <label>Enter account name to deposit to</label>
+        <input name = "accDepositInput" type = "text">
+        <label>Enter amount to deposit</label>
+        <input name = "depositAmountInput" type = "text">
+        <button id = "depositBtn" type = "button">Submit</button>
+    </form>
+    <form name = "withdrawForm">
+        <label>Enter account name to withdraw from</label>
+        <input name = "accWithdrawInput" type = "text">
+        <label>Enter amount to withdraw</label>
+        <input name = "amountWithdrawInput" type = text>
+        <button id = "withdrawBtn" type = "button">Submit</button>
+    </form>
+    <form name = "applyBankAccForm">
+        Apply for a new bank account!
+        <br>
+        <label>Enter account name</label>
+        <input name = "applyAccNameInput" type = "text">
+        <label>Enter account balance</label>
+        <input name = "applyAmountInput" type = "text">
+        <button id = "applyBankAccBtn" type = "button">Submit</button>
+    </form>
+    <br>
+    <label>View posted transfers</label>
+    <button id = "viewTransfersBtn" type = "button">Submit</button>
+
+    <form name = "postTransferForm">
+        <br>
+        Post a Transfer
+        <br>
+        <label>Enter username of account to transfer to</label>
+        <input name = "usernameInput" type = "text">
+        <label>Enter amount to transfer</label>
+        <input name = "transferAmountInput" type ="text">
+        <label>Enter account to transfer from</label>
+        <input name = "senderAccInput">
+        <button id = "postTransferBtn" type = "button">Submit</button>
+
+    </form>
+    <form name = "acceptTransferForm">
+        Accept a transfer
+        <br>
+        <label>Name of account whose transfer you accept</label>
+        <input name = "accNameInput" type = "text">
+        <label>Account to deposit transfer to</label>
+        <input name = "accDepositInput" type = "text">
+        <button id = "acceptTransferBtn" type = "button">Submit</button>
+    </form>
+    <br>
+    <label>View previous transactions</label>
+    <button id = "viewTransactionsBtn" type = "button">Submit</button>
+    <br>
+    <button id = "logoutBtn" type = "button">Logout</button>
+
+    <div id = "balanceDiv">
+
+    </div>
+    <script src = "customerPortal.js"></script>
+</body>
+</html>
