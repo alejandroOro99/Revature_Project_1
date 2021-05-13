@@ -186,6 +186,7 @@ public class Main {
                 String accToDeposit = ctx.pathParam("accToDeposit").toString();
 
                 if(customerService.acceptTransfer(customer,accToDeposit, accName)){
+                    transactions.debug(customer.getUsername()+" accepted transfer from "+accName);
                     ctx.json("success");
                 }else{
                     ctx.json("failed");
@@ -292,9 +293,29 @@ public class Main {
                     String value = index$String.substring(0,indexEnd$);
 
                     arr.add("Date: "+date+" Deposit amount="+value);
-                }else{
+                }else if(s.contains("|")){// | is used in accepting bank accounts nextTO it is name of banker who approved
                     date = s.substring(0,index);
-                    arr.add("date: "+date);
+                    int indexAcceptUser = s.indexOf("|")+1;
+                    String indexAcceptUserString = s.substring(indexAcceptUser);
+                    int indexEnd = indexAcceptUserString.indexOf(" ");
+                    String value = indexAcceptUserString.substring(0,indexEnd);
+
+                    int indexUsername = indexAcceptUserString.indexOf("account:");
+                    System.out.println(indexUsername);
+                    System.out.println(indexAcceptUserString);
+                    String indexUsernameString = indexAcceptUserString.substring(indexUsername);
+                    arr.add("Date: "+date+", employee: "+value+" approved: "+indexUsernameString);
+
+                }else if(s.contains("withdrew")){
+                    date = s.substring(0,index);
+                    int indexWithdrewName = s.indexOf(customer.getUsername());
+                    String indexWithdrewNameString = s.substring(indexWithdrewName);
+                    arr.add("Date: "+date+", user "+indexWithdrewNameString);
+                }else if (s.contains("posted")){
+                    date = s.substring(0,index);
+                    int indexPosted = s.indexOf(customer.getUsername());
+                    String indexPostedString = s.substring(indexPosted);
+                    arr.add("Date: "+date+", user "+indexPostedString);
                 }
 
             }
@@ -308,6 +329,14 @@ public class Main {
                 log.debug(e);
             }
             ctx.json(jsonObject);
+        });
+
+        //view transactions for employee
+        app.get("/employee/transactions/:date",ctx->{
+            String date = ctx.pathParam("date");
+
+
+
         });
         //GET customer accounts
         app.get("/employee/getCustomer/:username/:password",ctx->{
