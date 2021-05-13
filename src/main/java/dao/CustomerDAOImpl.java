@@ -435,4 +435,28 @@ public class CustomerDAOImpl implements CustomerDAO{
         return false;
     }
 
+    @Override
+    public boolean isUsernameAvailable(String username, int employeeNum) {
+        try(Connection connection = DBConnection.getConnection()){
+            String sql = "SELECT username FROM \"BankApp\".employee WHERE username=?";
+            PreparedStatement checkUsernameSQL = connection.prepareStatement(sql);
+            checkUsernameSQL.setString(1,username);
+
+            ResultSet resultSet = checkUsernameSQL.executeQuery();
+
+            if(resultSet.next()){
+                log.debug("false");
+                return false;
+            }else{
+                log.debug("true");
+                return true;
+            }
+
+
+        }catch(SQLException e){
+            log.debug(e);
+        }
+        return false;
+    }
+
 }

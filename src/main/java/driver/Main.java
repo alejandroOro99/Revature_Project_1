@@ -8,6 +8,7 @@ import dao.CustomerDAO;
 import dao.CustomerDAOImpl;
 import exception.ServiceException;
 import io.javalin.Javalin;
+import model.BankAccount;
 import model.Customer;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -211,7 +212,12 @@ public class Main {
                 String password = jsonObject.get("password").toString();
                 int employeenum = 1;
 
-               ctx.json(customerService.applyCustomerAcc(firstname,lastname, username, password, employeenum));
+                if(customerService.isUsernameAvailable(username,1)){
+                    ctx.json(customerService.applyCustomerAcc(firstname,lastname, username, password, employeenum));
+                }else{
+                    ctx.json("username in use");
+                }
+
 
             }catch(Exception e){
                 ctx.json(String.valueOf(e));
@@ -224,16 +230,23 @@ public class Main {
                 jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
                 String username = jsonObject.get("username").toString();
                 String password = jsonObject.get("password").toString();
-                customer = customerService.login(username, password,1);//employee login overloaded
+
+
+                    customer = customerService.login(username, password,1);//employee login overloaded
+
 
                 if(customer != null){
                     ctx.json("login success");
                 }else{
-                    ctx.json("login failed");
                     customer = null;
+                    ctx.json("login success");
                 }
+
+
             }catch(Exception e){
                 e.printStackTrace();
+                ctx.json("login failed");
+                customer = null;
             }
         });
 
@@ -294,7 +307,63 @@ public class Main {
             }
             ctx.json(jsonObject);
         });
-        //GET customer
+        //GET customer accounts
+        app.get("/employee/getCustomer/:username/:password",ctx->{
+            JsonObject json = new JsonObject();
+            BankAccDAO bankAccDAOC1C3 = new BankAccDAOImpl();
+            log.debug("Put username of user");
+            String usernameViewAcc = ctx.pathParam("username").toString();
+            log.debug("Put password of user");
+            String passwordViewAcc = ctx.pathParam("password").toString();
+
+            //method for sending json array
+            log.debug(usernameViewAcc+" "+passwordViewAcc);
+            Customer customerViewAcc = bankAccService.selectCustomer(usernameViewAcc,passwordViewAcc);
+            List<BankAccount> bankAccountListViewAcc = bankAccService.viewAccounts(customerViewAcc);
+            JSONArray arr = new JSONArray();
+            System.out.println(bankAccountListViewAcc);
+            for(BankAccount b : bankAccountListViewAcc){
+                JsonObject bankacc = new JsonObject();
+                log.debug(b.getBankAccId());
+                bankacc.put("accountID", b.getBankAccId());
+                bankacc.put("balance", b.getBalance());
+                bankacc.put("name",b.getName());
+                arr.add(bankacc);
+            }
+
+            json.put("accounts",arr);
+
+            ctx.json(json);
+        });
+
+        //approve customer accounts
+        app.post("/employee/approve",ctx->{
+
+        });
+
+        //view customer applications
+        app.get("/employee/viewApplications/:username",ctx -> {
+
+            log.debug("Enter the username of the customer");
+            String acceptAccUsername = ctx.pathParam("username").toString();
+            Customer acceptAccCustomer = customerService.getCustomerByUsername(acceptAccUsername);
+
+            log.debug("Below are the accounts pending acceptance");
+
+            //method for sending json array
+            List<String> accNames = bankAccService.getStatusZeroAccounts(acceptAccCustomer);
+            JSONArray arr = new JSONArray();
+            JsonObject jsonObj = new JsonObject();
+            for(String s : accNames){
+                JsonObject jsonAcc = new JsonObject();
+                jsonAcc.put("account", s);
+                arr.add( jsonAcc);
+            }
+            jsonObj.put("accounts",arr);
+
+            ctx.json(jsonObj);
+
+        });
 
     }
 }

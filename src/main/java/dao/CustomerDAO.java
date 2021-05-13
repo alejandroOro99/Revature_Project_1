@@ -20,4 +20,5 @@ public interface CustomerDAO {
    List<String> displayCustomerByTransfer(Customer customer);
    boolean checkAccStatus(Customer customer, String account);
    boolean isUsernameAvailable(String username);
+   boolean isUsernameAvailable(String username, int employeeNum);//check employee username
 }

@@ -10,6 +10,7 @@ public interface CustomerService {
     boolean applyCustomerAcc(String firstname, String lastname, String username, String password);
     boolean applyCustomerAcc(String firstname, String lastname, String username, String password,int employeeNum);
     boolean isUsernameAvailable(String username);
+    boolean isUsernameAvailable(String username, int employeeNum);//employee check username
     Customer login(String username, String password);
     Customer login(String username, String password,int employeeNum);
     double viewAccBalance(String bankAccount);

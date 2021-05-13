@@ -37,6 +37,15 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public boolean isUsernameAvailable(String username, int employeeNum) {
+        if(customerDAO.isUsernameAvailable(username,employeeNum)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
     public Customer login(String username, String password) {
 
 

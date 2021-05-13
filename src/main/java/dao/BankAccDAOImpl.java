@@ -24,14 +24,15 @@ public class BankAccDAOImpl implements BankAccDAO{
 
         try(Connection connection = DBConnection.getConnection()){
 
-            String sql = "SELECT bankaccid,balance FROM \"BankApp\".bankaccounts WHERE bankaccid = ?";
+            String sql = "SELECT bankaccid,balance,name FROM \"BankApp\".bankaccounts WHERE bankaccid = ?";
             PreparedStatement selectSQL = connection.prepareStatement(sql);
             selectSQL.setLong(1,customer.getBankAccId());
 
             ResultSet resultSet = selectSQL.executeQuery();
 
             while(resultSet.next()){
-                BankAccount bankAccount = new BankAccount(customer.getBankAccId(), resultSet.getLong("balance"));
+                BankAccount bankAccount = new BankAccount(customer.getBankAccId(),
+                        resultSet.getLong("balance"),resultSet.getString("name"));
                 bankAccountList.add(bankAccount);
             }
 
@@ -74,21 +75,22 @@ public class BankAccDAOImpl implements BankAccDAO{
     }
 
     @Override
-    public void getStatusZeroAccounts(Customer customer) {
+    public List<String> getStatusZeroAccounts(Customer customer) {
 
         try(Connection connection = DBConnection.getConnection()){
-
+            List<String> accNames = new ArrayList<>();
             String sql = "SELECT name FROM \"BankApp\".bankaccounts WHERE status = 0 AND bankaccid=?";
             PreparedStatement acceptAccSQL = connection.prepareStatement(sql);
             acceptAccSQL.setLong(1,customer.getBankAccId());
             ResultSet resultSet = acceptAccSQL.executeQuery();
 
             while(resultSet.next()){
-                log.debug(resultSet.getString("name"));
+                accNames.add(resultSet.getString("name"));
             }
-
+            return accNames;
         }catch(Exception e){
             log.debug(e);
+            return null;
         }
     }
 

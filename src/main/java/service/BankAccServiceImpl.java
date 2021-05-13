@@ -21,8 +21,8 @@ public class BankAccServiceImpl implements BankAccService{
     }
 
     @Override
-    public void getStatusZeroAccounts(Customer customer) {
-        bankAccDAO.getStatusZeroAccounts(customer);
+    public List<String> getStatusZeroAccounts(Customer customer) {
+        return bankAccDAO.getStatusZeroAccounts(customer);
     }
 
     @Override
