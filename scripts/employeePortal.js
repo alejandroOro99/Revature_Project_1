@@ -1,5 +1,6 @@
 let viewAccBtn = document.getElementById("viewAccBtn");
 let viewApplicationsBtn = document.getElementById("viewApplicationsBtn");
+let acceptBtn = document.getElementById("acceptBtn");
 
 //view customer accounts
 viewAccBtn.addEventListener("click",()=>{
@@ -58,5 +59,21 @@ viewApplicationsBtn.addEventListener("click",()=>{
                 document.getElementById("bodyDiv").innerHTML = data;
                 
             }
+        }); 
+});
+
+//accept applications
+acceptBtn.addEventListener("click",()=>{
+    let username = document.forms["acceptForm"]["usernameInput"].value;
+    let accName = document.forms["acceptForm"]["nameInput"].value;
+    let pathToUrl = username+"/"+accName;
+    
+    let url = "http://localhost:9000/employee/approve/"+pathToUrl;//random parameter at the end, bug with non-parameter endpoint in Javalin
+    console.log(url);
+    
+    fetch(url)
+        .then(res => res.json())
+        .then(response =>{
+            console.log(response);
         }); 
 });

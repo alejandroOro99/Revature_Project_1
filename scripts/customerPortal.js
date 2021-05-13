@@ -6,6 +6,7 @@
  let postTransferBtn = document.getElementById("postTransferBtn");
  let viewTransfersBtn = document.getElementById("viewTransfersBtn");
  let viewTransactionsBtn = document.getElementById("viewTransactionsBtn");
+ let acceptTransferBtn = document.getElementById("acceptTransferBtn");
 
  window.onload = (event) => {
     let data = loadLogin();
@@ -204,5 +205,20 @@ viewTransactionsBtn.addEventListener("click",()=>{
                 document.getElementById("balanceDiv").innerHTML = data;
                 
             }
+        }); 
+});
+
+acceptTransferBtn.addEventListener("click",()=>{
+    let accName = document.forms["acceptTransferForm"]["accNameInput"].value;
+    let accDeposit = document.forms["acceptTransferForm"]["accDepositInput"].value;
+    let pathToUrl = accName + "/"+accDeposit;
+
+    let url = "http://localhost:9000/customer/handleTransfer/"+pathToUrl;//random parameter at the end, bug with non-parameter endpoint in Javalin
+    console.log(url);
+    
+    fetch(url)
+        .then(res => res.json())
+        .then(response =>{
+            console.log(response);
         }); 
 });

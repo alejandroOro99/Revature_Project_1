@@ -247,10 +247,15 @@ public class CustomerDAOImpl implements CustomerDAO{
                 acceptTransferSQL.setString(2,acceptedAcc);
                 ResultSet resultSet = acceptTransferSQL.executeQuery();
 
-                while(resultSet.next()){
+                System.out.println(resultSet);
+
+
+                if(resultSet.next()){
 
                     double balanceDiscount = resultSet.getDouble("balance");
                     long senderId = resultSet.getLong("senderid");
+                    System.out.println(balanceDiscount);
+                    System.out.println(senderId);
 
                     String sqlSenderDiscount = "UPDATE \"BankApp\".bankaccounts SET balance=balance-? WHERE bankaccid=?";
                     PreparedStatement senderDiscountSQL = connection.prepareStatement(sqlSenderDiscount);
@@ -269,8 +274,11 @@ public class CustomerDAOImpl implements CustomerDAO{
                     deleteSQL.setLong(1,senderId);
                     deleteSQL.setString(2,acceptedAcc);
                     deleteSQL.executeUpdate();
-
+                    return true;
+                }else{
+                    return false;
                 }
+
 
 
 

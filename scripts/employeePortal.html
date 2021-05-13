@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script type = "text/javascript" >  
+        function preventBack() { window.history.forward(); }  
+        setTimeout("preventBack()", 0);  
+        window.onunload = function () { null };  
+    </script> 
 </head>
 <body>
     <h1>Welcome to the employee portal</h1>
@@ -23,6 +28,15 @@
         <Label>Username</Label>
         <input name = "usernameInput" type = "text">
         <button id = "viewApplicationsBtn" type = "button">Submit</button>
+    </form>
+    <form name = "acceptForm">
+        Accept application
+        <br>
+        <Label>Username</Label>
+        <input name = "usernameInput" type = "text">
+        <label>Account name</label>
+        <input name = "nameInput">
+        <button id = "acceptBtn" type = "button">Submit</button>
     </form>
     <div id = "bodyDiv">
 

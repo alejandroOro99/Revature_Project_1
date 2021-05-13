@@ -97,20 +97,19 @@ public class BankAccDAOImpl implements BankAccDAO{
     @Override
     public void acceptAccounts(String name, Customer customer) {
 
-        String[] accNames = name.split(" ");//split based on spaces
+        //split based on spaces
         try(Connection connection = DBConnection.getConnection()){
             String sql = "UPDATE \"BankApp\".bankaccounts SET status = 1 WHERE name=? AND bankaccid=?";
             String sqlDelete = "DELETE FROM \"BankApp\".bankaccounts WHERE status = 0 AND bankaccid = ?";
 
             PreparedStatement acceptAccountsSQL = connection.prepareStatement(sql);
 
-            for(String namesOfAccs : accNames){
-                acceptAccountsSQL.setString(1,namesOfAccs);
+
+                acceptAccountsSQL.setString(1,name);
                 acceptAccountsSQL.setLong(2,customer.getBankAccId());
 
                 acceptAccountsSQL.executeUpdate();
 
-            }
 
             PreparedStatement deleteAccSQL = connection.prepareStatement(sqlDelete);
             deleteAccSQL.setLong(1,customer.getBankAccId());

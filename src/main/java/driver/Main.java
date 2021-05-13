@@ -178,16 +178,19 @@ public class Main {
         });
 
         //Customer Handle transfers feature
-        app.post("/customer/handleTransfer",ctx->{
+        app.get("/customer/handleTransfer/:accName/:accToDeposit",ctx->{
 
             try{
-                customerService.displayCustomerByTransfer(customer);
 
-                jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
-                String accName = jsonObject.get("accName").toString();
-                String accToDeposit = jsonObject.get("accToDeposit").toString();
+                String accName = ctx.pathParam("accName").toString();
+                String accToDeposit = ctx.pathParam("accToDeposit").toString();
 
-                customerService.acceptTransfer(customer,accToDeposit, accName);
+                if(customerService.acceptTransfer(customer,accToDeposit, accName)){
+                    ctx.json("success");
+                }else{
+                    ctx.json("failed");
+                }
+
 
             }catch(Exception e){
                 ctx.json(String.valueOf(e));
@@ -199,7 +202,6 @@ public class Main {
 
             Customer customerTransfer = customerService.getCustomerByUsername(ctx.pathParam("username"));
             ctx.json(customerService.displayCustomerByTransfer(customer));
-
 
         });
         //Create employee
@@ -337,7 +339,18 @@ public class Main {
         });
 
         //approve customer accounts
-        app.post("/employee/approve",ctx->{
+        app.get("/employee/approve/:username/:name",ctx->{
+            String acceptedAccounts = ctx.pathParam("name");
+            String acceptAccUsername = ctx.pathParam("username");;
+            Customer acceptAccCustomer = customerService.getCustomerByUsername(acceptAccUsername);
+            try{
+                bankAccService.acceptAccounts(acceptedAccounts, acceptAccCustomer);
+                ctx.json("success");
+                transactions.debug("|"+customer.getUsername()+" accepted account:"+acceptedAccounts+
+                        ", username: "+acceptAccUsername);
+            }catch(Exception e){
+                ctx.json(String.valueOf(e));
+            }
 
         });
 

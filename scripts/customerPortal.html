@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script type = "text/javascript" >  
+        function preventBack() { window.history.forward(); }  
+        setTimeout("preventBack()", 0);  
+        window.onunload = function () { null };  
+    </script> 
 </head>
 <body>
     
@@ -58,9 +63,19 @@
         <button id = "postTransferBtn" type = "button">Submit</button>
 
     </form>
+    <form name = "acceptTransferForm">
+        Accept a transfer
+        <br>
+        <label>Name of account whose transfer you accept</label>
+        <input name = "accNameInput" type = "text">
+        <label>Account to deposit transfer to</label>
+        <input name = "accDepositInput" type = "text">
+        <button id = "acceptTransferBtn" type = "button">Submit</button>
+    </form>
     <br>
     <label>View previous transactions</label>
     <button id = "viewTransactionsBtn" type = "button">Submit</button>
+
     <div id = "balanceDiv">
 
     </div>
