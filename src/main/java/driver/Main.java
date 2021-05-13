@@ -1,4 +1,5 @@
 package driver;
+import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import controller.JlinController;
 import dao.BankAccDAO;
@@ -9,6 +10,7 @@ import exception.ServiceException;
 import io.javalin.Javalin;
 import model.Customer;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONArray;
 import service.BankAccService;
 import service.BankAccServiceImpl;
 import service.CustomerService;
@@ -17,6 +19,8 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -103,10 +107,10 @@ public class Main {
 
                 log.debug(customerService.applyBankAcc(accName, accBalance, customer));
                 transactions.info("Bank account created, name: "+accName+" balance: $"+accBalance);
-                ctx.result("applyAcc success");
+                ctx.json("applyAcc success");
             }catch(Exception e){
                 log.debug(e);
-                ctx.result("exception");
+                ctx.json(String.valueOf(e));
             }
 
         });
@@ -120,7 +124,7 @@ public class Main {
                 System.out.println(accName+" "+depositAmount);
                 System.out.println(customer);
                 ctx.json(String.valueOf(customerService.deposit(accName, depositAmount, customer)));
-
+                transactions.debug(customer.getUsername()+" deposited $"+depositAmount+" in "+accName);
             }catch(Exception e){
                 e.printStackTrace();
                 ctx.json(String.valueOf(e));
@@ -130,12 +134,14 @@ public class Main {
         //Withdraw feature
         app.post("/customer/withdraw",ctx->{
 
+            log.debug("withdraw");
             try{
                 jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
                 String accName = jsonObject.get("accName").toString();
                 long withdrawAmount = Long.parseLong(jsonObject.get("withdrawAmount").toString());
 
                 customerService.withdraw(accName, customer, withdrawAmount);
+                transactions.debug(customer.getUsername()+" withdrew $"+withdrawAmount+" from "+accName);
                 ctx.json("success");
             }catch(ServiceException e){
                 ctx.json(String.valueOf(e));
@@ -163,9 +169,10 @@ public class Main {
                 Customer recipient = customerService.getCustomerByUsername(username);
 
                 customerService.postTransfer(customer, recipient, transferAmount, senderAcc);
-
+                transactions.debug(customer.getUsername()+" posted $"+transferAmount+" to "+username+" from "+senderAcc);
+                ctx.json("success");
             }catch(NumberFormatException | ServiceException e){
-                ctx.result(String.valueOf(e));
+                ctx.json(String.valueOf(e));
             }
         });
 
@@ -182,7 +189,51 @@ public class Main {
                 customerService.acceptTransfer(customer,accToDeposit, accName);
 
             }catch(Exception e){
-                ctx.result(String.valueOf(e));
+                ctx.json(String.valueOf(e));
+            }
+        });
+
+        //Display pending transfers
+        app.get("/customer/view/:username",ctx->{
+
+            Customer customerTransfer = customerService.getCustomerByUsername(ctx.pathParam("username"));
+            ctx.json(customerService.displayCustomerByTransfer(customer));
+
+
+        });
+        //Create employee
+        app.post("/employee/apply",ctx->{
+            try{
+                jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
+                String firstname = jsonObject.get("firstname").toString();
+                String lastname = jsonObject.get("lastname").toString();
+                String username = jsonObject.get("username").toString();
+                String password = jsonObject.get("password").toString();
+                int employeenum = 1;
+
+               ctx.json(customerService.applyCustomerAcc(firstname,lastname, username, password, employeenum));
+
+            }catch(Exception e){
+                ctx.json(String.valueOf(e));
+            }
+        });
+
+        //login employee
+        app.post("/employee/login",ctx->{
+            try{
+                jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
+                String username = jsonObject.get("username").toString();
+                String password = jsonObject.get("password").toString();
+                customer = customerService.login(username, password,1);//employee login overloaded
+
+                if(customer != null){
+                    ctx.json("login success");
+                }else{
+                    ctx.json("login failed");
+                    customer = null;
+                }
+            }catch(Exception e){
+                e.printStackTrace();
             }
         });
 
@@ -193,14 +244,57 @@ public class Main {
             String acceptAccUsername = ctx.pathParam("username");
             Customer acceptAccCustomer = customerDAO.getCustomerByUsername(acceptAccUsername);
 
-            log.debug("Below are the accounts pending acceptance");
-
             bankAccService.getStatusZeroAccounts(acceptAccCustomer);
 
-            log.debug("Enter the names(separated by a space) of the bank accounts " +
-                    "you would like to approve from those above");
-
-
         });
+
+        //View transactions.log for customer
+        app.get("/customer/viewTransactions/:a",ctx->{
+            List<String> transactionsList = new ArrayList<>();
+            JsonObject jsonObject = new JsonObject();
+            JSONArray arr = new JSONArray();
+            JSONArray arrDeposits = new JSONArray();
+            String date;
+            while(fileScanner.hasNextLine()){
+                String line = fileScanner.nextLine();
+                if(line.contains(customer.getUsername())){
+                    transactionsList.add(line);
+                }
+            }
+            int i = 0;
+            System.out.println(transactionsList);
+            for(String s : transactionsList){
+                int index = s.indexOf(",");
+                if(s.contains("deposited")){
+                    //find where substrings end and start depending on special characters($) and spaces
+                    date = s.substring(0,index);
+                    int index$ = s.indexOf("$");
+                    System.out.println(index$);
+                    String index$String = s.substring(index$);
+                    System.out.println(index$String);
+                    int indexEnd$ = index$String.indexOf(" ");
+                    System.out.println(indexEnd$);
+                    String value = index$String.substring(0,indexEnd$);
+
+                    arr.add("Date: "+date+" Deposit amount="+value);
+                }else{
+                    date = s.substring(0,index);
+                    arr.add("date: "+date);
+                }
+
+            }
+            //creates json object with array for dates
+            jsonObject.put("dates",arr);
+            //jsonObject.put("deposits",arrDeposits);
+            //Have to re-initialize scanner so it points to the beginning of file again
+            try {
+                fileScanner = new Scanner(file);
+            } catch (FileNotFoundException e) {
+                log.debug(e);
+            }
+            ctx.json(jsonObject);
+        });
+        //GET customer
+
     }
 }

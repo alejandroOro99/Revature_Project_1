@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class CustomerDAOImpl implements CustomerDAO{
@@ -71,7 +73,36 @@ public class CustomerDAOImpl implements CustomerDAO{
            return applySuccess;
         }
 
-        //Method that can check if an user's credentials match an entry in the database
+        //Overloaded for employee table
+    @Override
+    public boolean applyCustomerAcc(String firstname, String lastname, String username, String password, int employeeNum) {
+        boolean applySuccess = false;
+        try(Connection connection = DBConnection.getConnection()){
+
+            //Once we know that randId is unique, insert given name and found randId into a new customer entrance
+            String insertSQL = "INSERT INTO \"BankApp\".employee(firstname,lastname,username," +
+                    "password,employeenum) VALUES(?,?,?,?,?)";
+            PreparedStatement prepareInsertSQL = connection.prepareStatement(insertSQL);
+            prepareInsertSQL.setString(1,firstname);
+            prepareInsertSQL.setString(2,lastname);
+            prepareInsertSQL.setString(3,username);
+            prepareInsertSQL.setString(4,password);
+            prepareInsertSQL.setLong(5,employeeNum);
+
+            applySuccess = prepareInsertSQL.execute();
+            log.debug("Applied successfully under the name: "+firstname+" "+lastname+",username: "+username +
+                    " password: "+password+" isemployeeN: "+employeeNum);
+            return true;
+        }catch(SQLException e){
+
+            log.debug(e);
+
+        }
+
+        return false;
+    }
+
+    //Method that can check if an user's credentials match an entry in the database
     @Override
     public Customer login(String username, String password) {
 
@@ -91,7 +122,8 @@ public class CustomerDAOImpl implements CustomerDAO{
                     if(isUsernameCorrect && isPasswordCorrect){
                         log.debug("Successfully login in");
 
-                        return new Customer(resultSet.getLong("bankaccid"));
+                        return new Customer(resultSet.getLong("bankaccid"),
+                                resultSet.getString("username"));
                     }
 
                 }
@@ -101,6 +133,38 @@ public class CustomerDAOImpl implements CustomerDAO{
             }
         log.debug("username or password incorrect");
         return null;
+    }
+
+    //employee login feature
+    @Override
+    public Customer login(String username, String password, int employeeNum) {
+        try(Connection connection = DBConnection.getConnection()){
+
+            //the sql query, then the statement then the execution of the query
+            String sql = "SELECT username, password from \"BankApp\".employee";
+            PreparedStatement queryAccSQL = connection.prepareStatement(sql);
+            ResultSet resultSet = queryAccSQL.executeQuery();
+
+            while(resultSet.next()){
+
+                boolean isUsernameCorrect = resultSet.getString("username").equals(username) ;
+                boolean isPasswordCorrect = resultSet.getString("password").equals(password);
+
+                //returns a customer object with just a username
+                if(isUsernameCorrect && isPasswordCorrect){
+                    log.debug("Successfully login in");
+
+                    return new Customer(resultSet.getString("username"));
+                }
+
+            }
+
+        }catch(SQLException e){
+            log.debug(e);
+        }
+        log.debug("username or password incorrect");
+        return null;
+
     }
 
     @Override
@@ -293,8 +357,9 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
 
     @Override
-    public void displayCustomerByTransfer(Customer customer) {
+    public List<String> displayCustomerByTransfer(Customer customer) {
 
+        List<String> listOfUsernames = new LinkedList<>();
             try(Connection connection = DBConnection.getConnection()){
                 String sql = "SELECT senderaccname,balance FROM \"BankApp\".transfers WHERE recipientid=?";
                 PreparedStatement displaySQL = connection.prepareStatement(sql);
@@ -302,12 +367,17 @@ public class CustomerDAOImpl implements CustomerDAO{
                 ResultSet resultSet = displaySQL.executeQuery();
 
                 while(resultSet.next()){
-                    log.debug(resultSet.getString("senderaccname")+
-                            " amount: $"+resultSet.getDouble("balance"));
+                    listOfUsernames.add(resultSet.getString("senderaccname"));
+
+                    //log.debug(resultSet.getString("senderaccname")+
+                          //  " amount: $"+resultSet.getDouble("balance"));
                 }
+                log.debug(listOfUsernames);
+                return listOfUsernames;
 
             }catch(SQLException e){
                 log.debug(e);
+                return null;
             }
     }
 

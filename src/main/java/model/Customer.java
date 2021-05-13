@@ -21,6 +21,13 @@ public class Customer {
         this.bankAccId = bankAccId;
     }
 
+    public Customer(long bankAccId, String username){
+        this.bankAccId = bankAccId;
+        this.username = username;
+    }
+    public Customer(String username){
+        this.username = username;
+    }
     public Customer(){
         this.bankAccount = null;
         this.firstName = "ale";

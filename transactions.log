@@ -1,0 +1,8 @@
+2021-05-12 17:31:15,526 [               Main.java:qtp575593575-19:105] - Bank account created, name: alex balance: $10
+2021-05-12 17:32:41,400 [               Main.java:qtp575593575-13:105] - Bank account created, name: johnny balance: $0
+2021-05-12 17:35:04,595 [               Main.java:qtp575593575-28:105] - Bank account created, name: s balance: $10
+2021-05-12 21:22:42,859 [               Main.java:qtp575593575-19:124] - 1234 deposited $10 in alex
+2021-05-12 21:22:50,958 [               Main.java:qtp575593575-19:141] - 1234 withdrew $100 from alex
+2021-05-12 21:23:06,179 [               Main.java:qtp575593575-19:169] - 1234 posted $10.0 to alje from alex
+
+2021-05-12 23:05:40,561 [               Main.java:qtp684874119-19:127] - 1234 deposited $100 in alex

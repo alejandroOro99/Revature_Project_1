@@ -1,0 +1,52 @@
+
+e
+java:S2095&"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(õÏ€¿
+e
+java:S2095U"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ğš¨
+f
+java:S2095Å"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(…ıĞ
+k
+java:S2095Ş"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(íŠøÿÿÿÿ
+f
+java:S2095Ø"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‰Ñƒê
+k
+java:S2095°"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œ›ãçÿÿÿÿÿ
+k
+java:S2095‡"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(µæêÿÿÿÿÿ
+k
+java:S2095¢"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ı“ ıÿÿÿÿ
+e
+java:S20958"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ğš¨
+j
+java:S2095q"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œ›ãçÿÿÿÿÿ
+f
+java:S2095Á"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(½–ğš
+k
+java:S2095Œ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÕÉ¼¸üÿÿÿÿ
+k
+java:S2095õ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Å½î›úÿÿÿÿ
+k
+java:S2095‘"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œ›ãçÿÿÿÿÿ
+f
+java:S2095í"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(çÏ‚…
+k
+java:S2095¶"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ò…Œıÿÿÿÿ
+k
+java:S2095¢"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ƒöÌõúÿÿÿÿ
+k
+java:S2095€"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Çñúïøÿÿÿÿ
+f
+java:S2095†"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‘ô®™
+_
+java:S1192µ"HDefine a constant instead of duplicating this literal "balance" 3 times.(“åèş
+e
+java:S1192,"JDefine a constant instead of duplicating this literal "bankaccid" 3 times.(˜ô¬€ùÿÿÿÿ
+d
+java:S1192v"IDefine a constant instead of duplicating this literal "username" 4 times.(îŠ¤àüÿÿÿÿ
+R	java:S125õ"<This block of commented-out lines of code should be removed.(•¶Š
+B
+java:S1168ü"+Return an empty collection instead of null.(¥¹ï
+X
+java:S1126"AReplace this if-then-else statement by a single return statement.(¥½ºÙ
+L
+java:S1481O"1Remove this unused "applySuccess" local variable.(¡§³Èùÿÿÿÿ

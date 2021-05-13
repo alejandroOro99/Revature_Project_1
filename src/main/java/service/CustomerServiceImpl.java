@@ -6,6 +6,8 @@ import exception.ServiceException;
 import org.apache.log4j.Logger;
 import model.Customer;
 
+import java.util.List;
+
 public class CustomerServiceImpl implements CustomerService {
     private static Logger log = Logger.getLogger(CustomerServiceImpl.class);
     private CustomerDAO customerDAO= new CustomerDAOImpl();
@@ -17,6 +19,11 @@ public class CustomerServiceImpl implements CustomerService {
             return customerDAO.applyCustomerAcc(firstname, lastname, username, password);
 
 
+    }
+
+    @Override
+    public boolean applyCustomerAcc(String firstname, String lastname, String username, String password, int employeeNum) {
+        return customerDAO.applyCustomerAcc(firstname,lastname,username,password,employeeNum);
     }
 
     @Override
@@ -34,6 +41,11 @@ public class CustomerServiceImpl implements CustomerService {
 
 
         return customerDAO.login(username,password);
+    }
+
+    @Override
+    public Customer login(String username, String password, int employeeNum) {
+        return customerDAO.login(username, password, employeeNum);
     }
 
     @Override
@@ -110,9 +122,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void displayCustomerByTransfer(Customer customer) {
+    public List<String> displayCustomerByTransfer(Customer customer) {
 
-        customerDAO.displayCustomerByTransfer(customer);
+        return customerDAO.displayCustomerByTransfer(customer);
     }
 
     @Override
