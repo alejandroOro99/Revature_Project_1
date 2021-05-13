@@ -4,7 +4,6 @@
 2021-05-12 21:22:42,859 [               Main.java:qtp575593575-19:124] - 1234 deposited $10 in alex
 2021-05-12 21:22:50,958 [               Main.java:qtp575593575-19:141] - 1234 withdrew $100 from alex
 2021-05-12 21:23:06,179 [               Main.java:qtp575593575-19:169] - 1234 posted $10.0 to alje from alex
-
 2021-05-12 23:05:40,561 [               Main.java:qtp684874119-19:127] - 1234 deposited $100 in alex
 2021-05-13 10:06:44,687 [               Main.java:qtp684874119-19:110] - Bank account created, name: alexoroAcc balance: $0
 2021-05-13 10:08:50,476 [               Main.java:qtp684874119-24:128] - alexoro deposited $10 in alexoroAcc
@@ -12,3 +11,5 @@
 2021-05-13 10:19:37,980 [               Main.java:qtp684874119-24:346] - |ale accepted account:john's acc, username: john
 2021-05-13 10:22:18,925 [               Main.java:qtp684874119-19:110] - Bank account created, name: 1234 balance: $10
 2021-05-13 10:22:44,636 [               Main.java:qtp684874119-19:346] - |ale accepted account:1234, username: 1234
+2021-05-13 14:49:11,597 [               Main.java:qtp684874119-13:110] - Bank account created, name: tanjiro balance: $1100
+2021-05-13 14:51:14,325 [               Main.java:qtp684874119-29:437] - |ale accepted account:tanjiro, username: nezuko

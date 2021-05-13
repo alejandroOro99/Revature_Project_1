@@ -242,7 +242,7 @@ public class Main {
                     ctx.json("login success");
                 }else{
                     customer = null;
-                    ctx.json("login success");
+                    ctx.json("login failed");
                 }
 
 
@@ -332,12 +332,39 @@ public class Main {
         });
 
         //view transactions for employee
-        app.get("/employee/transactions/:date",ctx->{
+        app.get("/employee/transactionsDate/:date",ctx->{
             String date = ctx.pathParam("date");
+            List<String> transactionsList = new ArrayList<>();
+            JsonObject jsonObject = new JsonObject();
+            JSONArray arr = new JSONArray();
+            JSONArray arrDeposits = new JSONArray();
+            while(fileScanner.hasNextLine()){
+                String line = fileScanner.nextLine();
+                if(line.contains(date)){
+                    transactionsList.add(line);
+                }
+            }
 
-
-
+            for(String s : transactionsList){
+                //split strings by start and end of []
+                int indexMain = s.indexOf("[");
+                String firstHalf = s.substring(0,indexMain);
+                String indexMainString = s.substring(indexMain);
+                int indexLast = indexMainString.indexOf("]");
+                String secondHalf = indexMainString.substring(indexLast);
+                String value = firstHalf + secondHalf;
+                arr.add(value);
+            }
+            jsonObject.put("transactions",arr);
+            //reset scanner
+            try {
+                fileScanner = new Scanner(file);
+            } catch (FileNotFoundException e) {
+                log.debug(e);
+            }
+            ctx.json(jsonObject);
         });
+
         //GET customer accounts
         app.get("/employee/getCustomer/:username/:password",ctx->{
             JsonObject json = new JsonObject();
@@ -367,6 +394,40 @@ public class Main {
             ctx.json(json);
         });
 
+        //get all transactions
+        app.get("/employee/allTransactions/:a",ctx->{
+            List<String> transactionsList = new ArrayList<>();
+            JsonObject jsonObject = new JsonObject();
+            JSONArray arr = new JSONArray();
+            JSONArray arrDeposits = new JSONArray();
+            String date = "";
+            while(fileScanner.hasNextLine()){
+                String line = fileScanner.nextLine();
+                if(line.contains("")){
+                    transactionsList.add(line);
+                }
+
+            }
+            System.out.println(transactionsList);
+            for(String s : transactionsList){
+                int indexMain = s.indexOf("[");
+                System.out.println(indexMain);
+                String firstHalf = s.substring(0,indexMain);
+                String indexMainString = s.substring(indexMain);
+                int indexLast = indexMainString.indexOf("]");
+                String secondHalf = indexMainString.substring(indexLast);
+                String value = firstHalf + secondHalf;
+                arr.add(value);
+            }
+            jsonObject.put("transactions",arr);
+            //reset scanner
+            try {
+                fileScanner = new Scanner(file);
+            } catch (FileNotFoundException e) {
+                log.debug(e);
+            }
+            ctx.json(jsonObject);
+        });
         //approve customer accounts
         app.get("/employee/approve/:username/:name",ctx->{
             String acceptedAccounts = ctx.pathParam("name");

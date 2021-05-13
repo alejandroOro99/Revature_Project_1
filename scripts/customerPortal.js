@@ -7,6 +7,7 @@
  let viewTransfersBtn = document.getElementById("viewTransfersBtn");
  let viewTransactionsBtn = document.getElementById("viewTransactionsBtn");
  let acceptTransferBtn = document.getElementById("acceptTransferBtn");
+ let logoutBtn = document.getElementById("logoutBtn");
 
  window.onload = (event) => {
     let data = loadLogin();
@@ -207,7 +208,7 @@ viewTransactionsBtn.addEventListener("click",()=>{
             }
         }); 
 });
-
+//accept transfers
 acceptTransferBtn.addEventListener("click",()=>{
     let accName = document.forms["acceptTransferForm"]["accNameInput"].value;
     let accDeposit = document.forms["acceptTransferForm"]["accDepositInput"].value;
@@ -221,4 +222,9 @@ acceptTransferBtn.addEventListener("click",()=>{
         .then(response =>{
             console.log(response);
         }); 
+});
+
+//logout
+logoutBtn.addEventListener("click",()=>{
+    window.location.replace("app.html");
 });

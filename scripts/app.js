@@ -107,6 +107,7 @@ employeeApplyBtn.addEventListener("click",()=>{
 //login feature
 employeeLoginBtn.addEventListener("click",()=>{
 
+    localStorage.removeItem("_loginData");
     let data = {
         username: document.forms["employeeLoginForm"]["usernameInput"].value,
         password: document.forms["employeeLoginForm"]["passwordInput"].value,
@@ -124,6 +125,7 @@ employeeLoginBtn.addEventListener("click",()=>{
     
             console.log(json);
             if(json == "login success"){
+                saveLogin(data.username, data.password);
                 window.location.replace("employeePortal.html");
             }
         } );

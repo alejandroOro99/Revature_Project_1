@@ -1,6 +1,12 @@
 let viewAccBtn = document.getElementById("viewAccBtn");
 let viewApplicationsBtn = document.getElementById("viewApplicationsBtn");
 let acceptBtn = document.getElementById("acceptBtn");
+let logoutBtn = document.getElementById("logoutBtn");
+
+let byTypeBtn = document.getElementById("byTypeBtn");
+let byDateBtn = document.getElementById("byDateBtn");
+let byUsernameBtn = document.getElementById("byUsernameBtn");
+let allTransactionsBtn = document.getElementById("allTransactionsBtn");
 
 //view customer accounts
 viewAccBtn.addEventListener("click",()=>{
@@ -77,3 +83,95 @@ acceptBtn.addEventListener("click",()=>{
             console.log(response);
         }); 
 });
+
+//by type
+byDateBtn.addEventListener("click",()=>{
+    let date = document.forms["transactionsForm"]["byDateInput"].value;
+    let url = "http://localhost:9000/employee/transactionsDate/"+date;//random parameter at the end, bug with non-parameter endpoint in Javalin
+    console.log(url);
+    
+    fetch(url)
+        .then(res => res.json())
+        .then(response =>{
+            let data = "<h3>Transactions with date: "+date+"</h3><br>";
+                for(i in response.transactions){
+                    console.log(response.transactions[i]);
+                    let obj = response.transactions[i];
+                   
+                     data += "<p>Account name: "+obj+"</p><br>";
+                    
+                    
+                }
+                document.getElementById("bodyDiv").innerHTML = data;
+        }); 
+});
+//transactions bu username
+byUsernameBtn.addEventListener("click",()=>{
+    let username = document.forms["transactionsForm"]["byUsernameInput"].value;
+    let url = "http://localhost:9000/employee/transactionsDate/"+username;//random parameter at the end, bug with non-parameter endpoint in Javalin
+    console.log(url);
+    
+    fetch(url)
+        .then(res => res.json())
+        .then(response =>{
+            let data="";
+                for(i in response.transactions){
+                    console.log(response.transactions[i]);
+                    let obj = response.transactions[i];
+                   
+                     data += "<p>Account name: "+obj+"</p><br>";
+                    
+                    
+                }
+                document.getElementById("bodyDiv").innerHTML = data;
+        }); 
+});
+
+//transactions by type
+byTypeBtn.addEventListener("click",()=>{
+    let type = document.forms["transactionsForm"]["byTypeInput"].value;
+    let url = "http://localhost:9000/employee/transactionsUsername/"+type;//random parameter at the end, bug with non-parameter endpoint in Javalin
+    console.log(url);
+    
+    fetch(url)
+        .then(res => res.json())
+        .then(response =>{
+            let data="";
+                for(i in response.transactions){
+                    console.log(response.transactions[i]);
+                    let obj = response.transactions[i];
+                   
+                     data += "<p>Account name: "+obj+"</p><br>";
+                    
+                    
+                }
+                document.getElementById("bodyDiv").innerHTML = data;
+        }); 
+});
+//all transactions
+
+allTransactionsBtn.addEventListener("click",()=>{
+    let url = "http://localhost:9000/employee/allTransactions/a";//random parameter at the end, bug with non-parameter endpoint in Javalin
+    console.log(url);
+    
+    fetch(url)
+        .then(res => res.json())
+        .then(response =>{
+            let data="";
+                for(i in response.transactions){
+                    console.log(response.transactions[i]);
+                    let obj = response.transactions[i];
+                   
+                     data += "<p>Account name: "+obj+"</p><br>";
+                    
+                    
+                }
+                document.getElementById("bodyDiv").innerHTML = data;
+        }); 
+});
+
+//logout
+logoutBtn.addEventListener("click",()=>{
+    window.location.replace("app.html");
+});
+
