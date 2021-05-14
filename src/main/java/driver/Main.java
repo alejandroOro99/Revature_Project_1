@@ -269,7 +269,7 @@ public class Main {
             String date;
             while(fileScanner.hasNextLine()){
                 String line = fileScanner.nextLine();
-                if(line.contains(customer.getUsername())){
+                if(line.contains(customer.getUsername()+" ")){//MAKE SURE I IS ISOLATED WORD
                     transactionsList.add(line);
                 }
             }

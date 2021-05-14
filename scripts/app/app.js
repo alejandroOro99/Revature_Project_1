@@ -25,22 +25,31 @@ loginBtn.addEventListener("click",()=>{
     }
         let url = "http://localhost:9000/customer/login";//post url for login feature
 
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        }).then((response) => response.json()) 
-        .then((json) =>{
-    
-            let jsonResponse = json;
-            console.log(jsonResponse)
-    
-            if(jsonResponse==="login success"){
-                saveLogin(data.username, data.password);
-                window.location.replace("../customerPortal/customerPortal.html"); 
-            }
-           
-        } );
+        if(data.username&&data.password){
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {"Content-type": "application/json; charset=UTF-8"}
+            }).then((response) => response.json()) 
+            .then((json) =>{
+        
+                let jsonResponse = json;
+                console.log(jsonResponse)
+        
+                if(jsonResponse==="login success"){
+                    saveLogin(data.username, data.password);
+                    window.location.replace("../customerPortal/customerPortal.html"); 
+                }else{
+                    console.log("Username or password incorrect");
+                    document.getElementById("bodyDiv").innerHTML = "<p>Username or password incorrect</p>";
+                }
+               
+            } );
+        }else{
+            console.log("All fields must have values");
+            document.getElementById("bodyDiv").innerHTML = "<p>All fields must have values</p>";
+        }
+        
   
 });
 

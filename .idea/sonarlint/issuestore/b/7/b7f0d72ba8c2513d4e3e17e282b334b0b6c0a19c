@@ -1,65 +1,0 @@
-
-P
-java:S1444"5Make this "public static customerService" field final(Åô´¨˚ˇˇˇˇ
-D
-java:S1444".Make this "public static customer" field final(◊≤øÄ
-K
-java:S1444"0Make this "public static jsonObject" field final(Î’»ñ˘ˇˇˇˇ
-O
-java:S1444 "4Make this "public static bankAccService" field final(¿ÈÊÙ˚ˇˇˇˇ
-h
-java:S1192["MDefine a constant instead of duplicating this literal "login failed" 3 times.(ÀÀ´∑ˇˇˇˇˇ
-_
-java:S1192A"IDefine a constant instead of duplicating this literal "password" 5 times.(ïé·Æ
-_
-java:S1192è"HDefine a constant instead of duplicating this literal "success" 4 times.(§∞Ë≈
-]
-java:S1192ü"GDefine a constant instead of duplicating this literal "Date: " 4 times.(˚£Ä
-c
-java:S1192i"HDefine a constant instead of duplicating this literal "accName" 5 times.(ﬁ©·Â˙ˇˇˇˇ
-`
-java:S11926"JDefine a constant instead of duplicating this literal "username" 11 times.(·∑Øö
-l	java:S117ö"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñ€“«¸ˇˇˇˇ
-l	java:S117õ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òù»©ˇˇˇˇˇ
-g	java:S117ú"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ìﬁäœ
-v
-java:S1104"[Make customerService a static final constant or non-public and provide accessors if needed.(Åô´¨˚ˇˇˇˇ
-j
-java:S1104"TMake customer a static final constant or non-public and provide accessors if needed.(◊≤øÄ
-q
-java:S1104"VMake jsonObject a static final constant or non-public and provide accessors if needed.(Î’»ñ˘ˇˇˇˇ
-u
-java:S1104 "ZMake bankAccService a static final constant or non-public and provide accessors if needed.(¿ÈÊÙ˚ˇˇˇˇ
-_
-java:S1128"IRemove this unused import 'com.github.cliftonlabs.json_simple.JsonArray'.(´ÚÜŸ
-B
-java:S3416"'Update this logger to use "Main.class".(˘©¬£˝ˇˇˇˇ
-h
-java:S3776/"RRefactor this method to reduce its Cognitive Complexity from 72 to the 15 allowed.(«µÌë
-:
-java:S2386>"%Make member "jsonObject" "protected".(‘í–
-Z
-java:S1858µ"C"pathParam" returns a string, there's no need to call "toString()".(Û‡ÚÃ
-Z
-java:S1858∂"C"pathParam" returns a string, there's no need to call "toString()".(†±òπ
-R	java:S125∫"<This block of commented-out lines of code should be removed.(ªŒ˛ 
-Z
-java:S1858Î"C"pathParam" returns a string, there's no need to call "toString()".(õ¥ˇ©
-_
-java:S1858Ì"C"pathParam" returns a string, there's no need to call "toString()".(ÏÌ°ˇˇˇˇˇ
-8
-java:S1116•"Remove this empty statement.(¡’ÚÂˇˇˇˇˇ
-_
-java:S1858∂"C"pathParam" returns a string, there's no need to call "toString()".(êÎŒ‘˘ˇˇˇˇ
-L
-java:S1481»"5Remove this unused "customerTransfer" local variable.(øµá…
-G
-java:S1481å"0Remove this unused "arrDeposits" local variable.(Ä∏¥Û
-G
-java:S1481 "0Remove this unused "arrDeposits" local variable.(Ä∏¥Û
-J
-java:S1481È"3Remove this unused "bankAccDAOC1C3" local variable.(Àƒ÷§
-G
-java:S1481á"0Remove this unused "arrDeposits" local variable.(Ä∏¥Û
-E
-java:S1481à")Remove this unused "date" local variable.(ê◊Ëä˝ˇˇˇˇ

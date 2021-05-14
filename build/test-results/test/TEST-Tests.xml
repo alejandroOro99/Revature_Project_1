@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Tests" tests="20" skipped="0" failures="0" errors="0" timestamp="2021-05-14T12:45:58" hostname="DESKTOP-6BHH6BK" time="5.195">
+<testsuite name="Tests" tests="20" skipped="0" failures="0" errors="0" timestamp="2021-05-14T14:21:04" hostname="DESKTOP-6BHH6BK" time="7.014">
   <properties/>
-  <testcase name="acceptTransfersMock()" classname="Tests" time="0.129"/>
-  <testcase name="testCheckAccStatus()" classname="Tests" time="1.106"/>
-  <testcase name="postTransfersMock()" classname="Tests" time="0.001"/>
-  <testcase name="testIsUsernameAvailableFalse()" classname="Tests" time="0.488"/>
-  <testcase name="withdrawMock2()" classname="Tests" time="0.002"/>
-  <testcase name="testIsUsernameAvailable()" classname="Tests" time="0.439"/>
-  <testcase name="isUsernameAvailableMock()" classname="Tests" time="0.002"/>
-  <testcase name="depositMock()" classname="Tests" time="0.001"/>
-  <testcase name="testWithdraw()" classname="Tests" time="0.384"/>
-  <testcase name="depositMock2()" classname="Tests" time="0.001"/>
-  <testcase name="depositMock3()" classname="Tests" time="0.001"/>
-  <testcase name="testAcceptTransfer1()" classname="Tests" time="0.443"/>
-  <testcase name="testAcceptTransfer2()" classname="Tests" time="0.427"/>
-  <testcase name="testCheckAccStatusFalse()" classname="Tests" time="0.461"/>
-  <testcase name="testSelectCustomerFalse()" classname="Tests" time="0.437"/>
-  <testcase name="postTransfersMock2()" classname="Tests" time="0.002"/>
-  <testcase name="postTransfersMock3()" classname="Tests" time="0.0"/>
-  <testcase name="withdrawMock()" classname="Tests" time="0.0"/>
-  <testcase name="testDeposit1()" classname="Tests" time="0.426"/>
-  <testcase name="testDeposit3()" classname="Tests" time="0.434"/>
+  <testcase name="acceptTransfersMock()" classname="Tests" time="0.431"/>
+  <testcase name="testCheckAccStatus()" classname="Tests" time="2.188"/>
+  <testcase name="postTransfersMock()" classname="Tests" time="0.005"/>
+  <testcase name="testIsUsernameAvailableFalse()" classname="Tests" time="0.494"/>
+  <testcase name="withdrawMock2()" classname="Tests" time="0.005"/>
+  <testcase name="testIsUsernameAvailable()" classname="Tests" time="0.48"/>
+  <testcase name="isUsernameAvailableMock()" classname="Tests" time="0.003"/>
+  <testcase name="depositMock()" classname="Tests" time="0.002"/>
+  <testcase name="testWithdraw()" classname="Tests" time="0.426"/>
+  <testcase name="depositMock2()" classname="Tests" time="0.002"/>
+  <testcase name="depositMock3()" classname="Tests" time="0.002"/>
+  <testcase name="testAcceptTransfer1()" classname="Tests" time="0.455"/>
+  <testcase name="testAcceptTransfer2()" classname="Tests" time="0.455"/>
+  <testcase name="testCheckAccStatusFalse()" classname="Tests" time="0.542"/>
+  <testcase name="testSelectCustomerFalse()" classname="Tests" time="0.558"/>
+  <testcase name="postTransfersMock2()" classname="Tests" time="0.004"/>
+  <testcase name="postTransfersMock3()" classname="Tests" time="0.003"/>
+  <testcase name="withdrawMock()" classname="Tests" time="0.002"/>
+  <testcase name="testDeposit1()" classname="Tests" time="0.46"/>
+  <testcase name="testDeposit3()" classname="Tests" time="0.472"/>
   <system-out><![CDATA[false
 true
-org.postgresql.jdbc.PgResultSet@3517684b
-org.postgresql.jdbc.PgResultSet@50f6d3
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

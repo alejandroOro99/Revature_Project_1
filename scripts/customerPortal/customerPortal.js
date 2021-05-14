@@ -34,7 +34,9 @@ viewAccBtn.addEventListener("click",()=>{
     let accName = document.forms["viewAccForm"]["viewAccInput"].value;
     let url = "http://localhost:9000/customer/"+accName;
     console.log(url);
-    fetch(url)
+
+    if(accName){
+        fetch(url)
         .then(res => res.json())
         .then(currentBalance =>{
             console.log(typeof currentBalance);
@@ -47,6 +49,10 @@ viewAccBtn.addEventListener("click",()=>{
             
 
         });  
+    }else{
+        document.getElementById("balanceDiv").innerHTML = "<p>Please enter account name</p>";
+    }
+    
 });
 
 //DEPOSIT feature
@@ -60,22 +66,27 @@ depositBtn.addEventListener("click",()=>{
 
     let url = "http://localhost:9000/customer/deposit";//post url for login feature
 
-    fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
-    }).then((response) => response.json()) 
-    .then((json) =>{
-
-        console.log(json);
-        if(json == "true"){
-            document.getElementById("balanceDiv").innerHTML = "<p>Succesfully deposited: $"+data.depositAmount+"</p>";
-        }else{
-            document.getElementById("balanceDiv").innerHTML = json;
-        }
-
-       
-    } );
+    if(data.accName&&data.depositAmount){
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        }).then((response) => response.json()) 
+        .then((json) =>{
+    
+            console.log(json);
+            if(json == "true"){
+                document.getElementById("balanceDiv").innerHTML = "<p>Succesfully deposited: $"+data.depositAmount+"</p>";
+            }else{
+                document.getElementById("balanceDiv").innerHTML = json;
+            }
+    
+           
+        } );
+    }else{
+        document.getElementById("balanceDiv").innerHTML = "<p>All fields must have values</p>";
+    }
+    
 });
 
 //WITHDRAW feature
@@ -88,22 +99,27 @@ withdrawBtn.addEventListener("click",()=>{
 
     let url = "http://localhost:9000/customer/withdraw";//post url for login feature
 
-    fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
-    }).then((response) => response.json()) 
-    .then((json) =>{
-
-        console.log(json);
-        if(json === "success"){
-            document.getElementById("balanceDiv").innerHTML = "<p>Succesfully withdrew: $"+data.withdrawAmount+"</p>";
-        }else{
-            document.getElementById("balanceDiv").innerHTML = "<p>Incorrect input</p>";
-        }
-
-       
-    } );
+    if(data.accName&&data.withdrawAmount){
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        }).then((response) => response.json()) 
+        .then((json) =>{
+    
+            console.log(json);
+            if(json === "success"){
+                document.getElementById("balanceDiv").innerHTML = "<p>Succesfully withdrew: $"+data.withdrawAmount+"</p>";
+            }else{
+                document.getElementById("balanceDiv").innerHTML = "<p>Incorrect input</p>";
+            }
+    
+           
+        } );
+    }else{
+        document.getElementById("balanceDiv").innerHTML = "<p>All fields must have values</p>";
+    }
+    
 
 });
 
@@ -117,21 +133,28 @@ applyBankAccBtn.addEventListener("click",()=>{
 
     let url = "http://localhost:9000/customer/applyAcc";//post url for login feature
 
-    fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
-    }).then((response) => response.json()) 
-    .then((json) =>{
-
-        console.log(json);
-        if(json == "applyAcc success"){
-            document.getElementById("balanceDiv").innerHTML = "<p>Account "+data.accName+" successfully created with balance: $"+data.accBalance+"</p>";
-        }else{
-            document.getElementById("balanceDiv").innerHTML = "<p>"+json+"</p>";
-        }
+    if(data.accName&&data.accBalance){
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        }).then((response) => response.json()) 
+        .then((json) =>{
     
-    } );
+            console.log(json);
+            if(json == "applyAcc success"){
+                document.getElementById("balanceDiv").innerHTML = "<p>Account "+data.accName+" successfully created with balance: $"
+                +data.accBalance+", please wait for a banker to approve or reject this account" +
+                " in order to apply for another account</p>";
+            }else{
+                document.getElementById("balanceDiv").innerHTML = "<p>"+json+"</p>";
+            }
+        
+        } );
+    }else{
+        document.getElementById("balanceDiv").innerHTML = "<p>All fields must have values</p>";
+    }
+    
 
 });
 
@@ -155,7 +178,7 @@ postTransferBtn.addEventListener("click",()=>{
     
             console.log(json);
             if(json == "success"){
-                document.getElementById("balanceDiv").innerHTML = "<p>Posted $ "+data.transferAmount+" to "+data.username+" from "+data.senderAcc+"</p>";
+                document.getElementById("balanceDiv").innerHTML = "<p>Posted $"+data.transferAmount+" to "+data.username+" from "+data.senderAcc+"</p>";
             }else{
                 document.getElementById("balanceDiv").innerHTML = "<p>"+json+"</p>";
             }
@@ -180,13 +203,16 @@ viewTransfersBtn.addEventListener("click",()=>{
         .then(response =>{
             console.log(response);
             let data="";
-            if(response != null){
+            if(!(JSON.stringify(response) === '{}') ){
 
                 //parse hashmap from backend
                 keys = Object.keys(response);
                 keys.forEach(i=>{
                     data+=i+": $"+response[i];
                 });
+                document.getElementById("balanceDiv").innerHTML = "<p>"+data+"</p>";
+            }else{
+                data+="No transfers posted to your account";
                 document.getElementById("balanceDiv").innerHTML = "<p>"+data+"</p>";
             }
         }); 
