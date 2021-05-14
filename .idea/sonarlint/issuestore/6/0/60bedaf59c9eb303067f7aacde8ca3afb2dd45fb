@@ -1,60 +1,57 @@
 
-j
-java:S2095o"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œ›ãçÿÿÿÿÿ
-k
-java:S2095½"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ò…Œıÿÿÿÿ
-k
-java:S2095Ä"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ı“ ıÿÿÿÿ
-k
-java:S2095İ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(íŠøÿÿÿÿ
-f
-java:S2095ö"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(çÏ‚…
-k
-java:S2095®"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œ›ãçÿÿÿÿÿ
-k
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œ›ãçÿÿÿÿÿ
-e
-java:S2095S"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ğš¨
-k
-java:S2095„"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Çñúïøÿÿÿÿ
-f
-java:S2095È"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(½–ğš
-e
-java:S2095$"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(õÏ€¿
-f
-java:S2095Š"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‘ô®™
-f
-java:S2095Ä"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(…ıĞ
-k
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÕÉ¼¸üÿÿÿÿ
-k
-java:S2095¬"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ı“ ıÿÿÿÿ
-k
-java:S2095ô"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Å½î›úÿÿÿÿ
 e
 java:S20956"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ğš¨
 k
-java:S2095‘"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(µæêÿÿÿÿÿ
-k
-java:S2095©"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ƒöÌõúÿÿÿÿ
+java:S2095İ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(íŠøÿÿÿÿ
 f
-java:S2095ß"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‰Ñƒê
+java:S2095†"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‘ô®™
+k
+java:S2095®"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œ›ãçÿÿÿÿÿ
+f
+java:S2095Ä"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(½–ğš
+e
+java:S2095$"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(õÏ€¿
+k
+java:S2095€"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Çñúïøÿÿÿÿ
+k
+java:S2095¥"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ƒöÌõúÿÿÿÿ
+k
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œ›ãçÿÿÿÿÿ
+k
+java:S2095Œ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÕÉ¼¸üÿÿÿÿ
+j
+java:S2095o"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œ›ãçÿÿÿÿÿ
+k
+java:S2095¹"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ò…Œıÿÿÿÿ
+k
+java:S2095¨"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ı“ ıÿÿÿÿ
+f
+java:S2095Ä"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(…ıĞ
+k
+java:S2095ô"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Å½î›úÿÿÿÿ
+f
+java:S2095ò"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(çÏ‚…
+f
+java:S2095Û"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‰Ñƒê
+e
+java:S2095S"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ğš¨
+k
+java:S2095À"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ı“ ıÿÿÿÿ
+k
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(µæêÿÿÿÿÿ
 _
 java:S1192´"HDefine a constant instead of duplicating this literal "balance" 4 times.(“åèş
 e
 java:S1192*"JDefine a constant instead of duplicating this literal "bankaccid" 3 times.(˜ô¬€ùÿÿÿÿ
 d
 java:S1192t"IDefine a constant instead of duplicating this literal "username" 4 times.(îŠ¤àüÿÿÿÿ
-O	java:S106ù"9Replace this use of System.out or System.err by a logger.(„öŞœ
-O	java:S106€"9Replace this use of System.out or System.err by a logger.(Âè“Ù
-O	java:S106"9Replace this use of System.out or System.err by a logger.(ÉÆ‰¼
 u
-java:S2293ó"YReplace the type specification in this constructor call with the diamond operator ("<>").(éåøÛıÿÿÿÿ
-W	java:S125û"<This block of commented-out lines of code should be removed.(ùÎ‘ÿÿÿÿÿ
-R	java:S125ÿ"<This block of commented-out lines of code should be removed.(•¶Š
+java:S2293ï"YReplace the type specification in this constructor call with the diamond operator ("<>").(éåøÛıÿÿÿÿ
+W	java:S125÷"<This block of commented-out lines of code should be removed.(ùÎ‘ÿÿÿÿÿ
+R	java:S125û"<This block of commented-out lines of code should be removed.(•¶Š
 X
-java:S1126—"AReplace this if-then-else statement by a single return statement.(¥½ºÙ
+java:S1126“"AReplace this if-then-else statement by a single return statement.(¥½ºÙ
 L
 java:S1481M"1Remove this unused "applySuccess" local variable.(¡§³Èùÿÿÿÿ
 K
-java:S1481ò"/Remove this unused "listAmount" local variable.(„ı§µüÿÿÿÿ
+java:S1481î"/Remove this unused "listAmount" local variable.(„ı§µüÿÿÿÿ
