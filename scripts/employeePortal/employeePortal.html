@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href = "employeePortal.css" rel = "stylesheet">
     <script type = "text/javascript" >  
         function preventBack() { window.history.forward(); }  
         setTimeout("preventBack()", 0);  
@@ -13,25 +15,23 @@
 </head>
 <body>
     <h1>Welcome to the employee portal</h1>
+    <br>
     <form name = "viewAccForm">
-        View Customer accounts
-        <br>
+        <h4>View Customer accounts</h4>
         <label>Username</label>
         <input name = "usernameInput" type = "text">
         <label>Password</label>
-        <input name = "passwordInput" text = "text">
+        <input name = "passwordInput" type = "password">
         <button id = "viewAccBtn" type = "button">Submit</button>
     </form>
     <form name = "viewApplicationsForm">
-        View pending applications
-        <br>
+        <h4>View pending applications</h4>
         <Label>Username</Label>
         <input name = "usernameInput" type = "text">
         <button id = "viewApplicationsBtn" type = "button">Submit</button>
     </form>
     <form name = "acceptForm">
-        Accept application
-        <br>
+        <h4>Accept application</h4>
         <Label>Username</Label>
         <input name = "usernameInput" type = "text">
         <label>Account name</label>
@@ -39,19 +39,18 @@
         <button id = "acceptBtn" type = "button">Submit</button>
     </form>
     <form name = "transactionsForm">
-        View customer transactions
-        <br>
+        <h4>View customer transactions</h4>
         <label>Get all transactions</label>
         <button id = "allTransactionsBtn" type = "button">Submit</button>
-        <label>By type</label>
+        <label>By type(posted,withdrew,accepted,deposited)</label>
         <input name = "byTypeInput" type = "text">
         <button id = "byTypeBtn" type = "button">Submit</button>
 
-        <label>By date</label>
+        <label>By date(yy-mm-dd)</label>
         <input name = "byDateInput" type = "text">
         <button id = "byDateBtn" type = "button">Submit</button>
 
-        <label>By username</label>
+        <label>By username/account name</label>
         <input name = "byUsernameInput" type = "text">
         <button id = "byUsernameBtn" type = "button">Submit</button>
     </form>

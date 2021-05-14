@@ -53,7 +53,6 @@ public class Main {
 
             String username = ctx.pathParam("username");
             ctx.json(username);
-            System.out.println(customerService.isUsernameAvailable(username));
         });
 
         //Apply for customer account feature
@@ -122,8 +121,6 @@ public class Main {
                 jsonObject = (JsonObject) Jsoner.deserialize(ctx.body());
                 String accName = jsonObject.get("accName").toString();
                 long depositAmount = Long.parseLong(jsonObject.get("depositAmount").toString());
-                System.out.println(accName+" "+depositAmount);
-                System.out.println(customer);
                 ctx.json(String.valueOf(customerService.deposit(accName, depositAmount, customer)));
                 transactions.debug(customer.getUsername()+" deposited $"+depositAmount+" in "+accName);
             }catch(Exception e){
@@ -154,7 +151,7 @@ public class Main {
         app.get("/customer/:accName",ctx->{
             try{
                 String viewAccBalanceName = ctx.pathParam("accName");
-                ctx.json(customerService.viewAccBalance(viewAccBalanceName));
+                ctx.json(customerService.viewAccBalance(viewAccBalanceName,customer));
             }catch(Exception e){
                 ctx.json(String.valueOf(e));
             }
@@ -168,7 +165,6 @@ public class Main {
                 double transferAmount = Double.parseDouble(jsonObject.get("transferAmount").toString());
                 String senderAcc = jsonObject.get("senderAcc").toString();
                 Customer recipient = customerService.getCustomerByUsername(username);
-
                 customerService.postTransfer(customer, recipient, transferAmount, senderAcc);
                 transactions.debug(customer.getUsername()+" posted $"+transferAmount+" to "+username+" from "+senderAcc);
                 ctx.json("success");
@@ -277,19 +273,15 @@ public class Main {
                     transactionsList.add(line);
                 }
             }
-            int i = 0;
-            System.out.println(transactionsList);
+
             for(String s : transactionsList){
                 int index = s.indexOf(",");
                 if(s.contains("deposited")){
                     //find where substrings end and start depending on special characters($) and spaces
                     date = s.substring(0,index);
                     int index$ = s.indexOf("$");
-                    System.out.println(index$);
                     String index$String = s.substring(index$);
-                    System.out.println(index$String);
                     int indexEnd$ = index$String.indexOf(" ");
-                    System.out.println(indexEnd$);
                     String value = index$String.substring(0,indexEnd$);
 
                     arr.add("Date: "+date+" Deposit amount="+value);
@@ -301,8 +293,6 @@ public class Main {
                     String value = indexAcceptUserString.substring(0,indexEnd);
 
                     int indexUsername = indexAcceptUserString.indexOf("account:");
-                    System.out.println(indexUsername);
-                    System.out.println(indexAcceptUserString);
                     String indexUsernameString = indexAcceptUserString.substring(indexUsername);
                     arr.add("Date: "+date+", employee: "+value+" approved: "+indexUsernameString);
 
@@ -379,7 +369,6 @@ public class Main {
             Customer customerViewAcc = bankAccService.selectCustomer(usernameViewAcc,passwordViewAcc);
             List<BankAccount> bankAccountListViewAcc = bankAccService.viewAccounts(customerViewAcc);
             JSONArray arr = new JSONArray();
-            System.out.println(bankAccountListViewAcc);
             for(BankAccount b : bankAccountListViewAcc){
                 JsonObject bankacc = new JsonObject();
                 log.debug(b.getBankAccId());
@@ -408,10 +397,8 @@ public class Main {
                 }
 
             }
-            System.out.println(transactionsList);
             for(String s : transactionsList){
                 int indexMain = s.indexOf("[");
-                System.out.println(indexMain);
                 String firstHalf = s.substring(0,indexMain);
                 String indexMainString = s.substring(indexMain);
                 int indexLast = indexMainString.indexOf("]");

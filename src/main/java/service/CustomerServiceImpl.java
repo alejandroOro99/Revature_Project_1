@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import model.Customer;
 
 import java.util.List;
+import java.util.Map;
 
 public class CustomerServiceImpl implements CustomerService {
     private static Logger log = Logger.getLogger(CustomerServiceImpl.class);
@@ -58,9 +59,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public double viewAccBalance(String bankAccount) {
+    public double viewAccBalance(String bankAccount, Customer customer) {
 
-        return customerDAO.viewAccBalance(bankAccount);
+        return customerDAO.viewAccBalance(bankAccount,customer);
     }
 
     @Override
@@ -79,7 +80,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         if(!customerDAO.checkAccStatus(sender,senderName)){
             throw new ServiceException("Account must exist and be accepted by a banker");
-        }else if(customerDAO.viewAccBalance(senderName) < amount){
+        }else if(customerDAO.viewAccBalance(senderName,sender) < amount){
             throw new ServiceException("Can't post a transfer that results in a negative balance");
         }else if(amount < 0){
             throw new ServiceException("Can't post negative amounts");
@@ -131,7 +132,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<String> displayCustomerByTransfer(Customer customer) {
+    public Map<String,Double> displayCustomerByTransfer(Customer customer) {
 
         return customerDAO.displayCustomerByTransfer(customer);
     }

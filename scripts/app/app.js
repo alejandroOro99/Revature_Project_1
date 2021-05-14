@@ -1,7 +1,6 @@
 let loginBtn = document.getElementById("loginBtn");
 let applyBtn = document.getElementById("applyBtn");
-let employeeLoginBtn = document.getElementById("employeeLoginBtn");
-let employeeApplyBtn = document.getElementById("employeeBtn");
+
 
 function saveLogin(username, password){
 
@@ -24,9 +23,6 @@ loginBtn.addEventListener("click",()=>{
         username: document.forms["loginForm"]["usernameInput"].value,
         password: document.forms["loginForm"]["passwordInput"].value
     }
-    if(data.username === "admin" && data.password === "admin"){
-        window.location.replace("employeePortal.html");
-    }else{
         let url = "http://localhost:9000/customer/login";//post url for login feature
 
         fetch(url, {
@@ -41,12 +37,10 @@ loginBtn.addEventListener("click",()=>{
     
             if(jsonResponse==="login success"){
                 saveLogin(data.username, data.password);
-                window.location.replace("customerPortal.html"); 
+                window.location.replace("../customerPortal/customerPortal.html"); 
             }
            
         } );
-    }
-    
   
 });
 
@@ -71,65 +65,14 @@ applyBtn.addEventListener("click",()=>{
         .then((json) =>{
     
             console.log(json);
+
+            document.getElementById("bodyDiv").innerHTML = json;
         } );
     }else{
         console.log("All fields must have values");
+        document.getElementById("bodyDiv").innerHTML = "<p>All fields must have values</p>";
     }
     
 });
-//create new employee feature
 
-employeeApplyBtn.addEventListener("click",()=>{
-    let data = {
-        username: document.forms["employeeApplyForm"]["employeeUserInput"].value,
-        password: document.forms["employeeApplyForm"]["employeePasswordInput"].value,
-        firstname: document.forms["employeeApplyForm"]["employeeFirstInput"].value,
-        lastname: document.forms["employeeApplyForm"]["employeeLastInput"].value
-    }
 
-    let url = "http://localhost:9000/employee/apply";//post url for login feature
-
-    if(data.username&&data.password&&data.firstname&&data.lastname){
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        }).then((response) => response.json()) 
-        .then((json) =>{
-    
-            console.log(json);
-        } );
-    }else{
-        console.log("All fields must have values");
-    }
-});
-
-//login feature
-employeeLoginBtn.addEventListener("click",()=>{
-
-    localStorage.removeItem("_loginData");
-    let data = {
-        username: document.forms["employeeLoginForm"]["usernameInput"].value,
-        password: document.forms["employeeLoginForm"]["passwordInput"].value,
-    }
-
-    let url = "http://localhost:9000/employee/login";//post url for login feature
-
-    if(data.username&&data.password){
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        }).then((response) => response.json()) 
-        .then((json) =>{
-    
-            console.log(json);
-            if(json == "login success"){
-                saveLogin(data.username, data.password);
-                window.location.replace("employeePortal.html");
-            }
-        } );
-    }else{
-        console.log("All fields must have values");
-    }
-});

@@ -38,7 +38,7 @@ public class Tests {
     public void testCheckAccStatus(){
         Customer customer = new Customer(5775280242015442471l);
         String account = "orozcoAcc";
-        Assertions.assertEquals(true,customerDAO.checkAccStatus(customer, account));
+        Assertions.assertEquals(false,customerDAO.checkAccStatus(customer, account));
     }
     @Test
     public void testCheckAccStatusFalse(){
@@ -172,7 +172,7 @@ public class Tests {
     final void postTransfersMock2() throws ServiceException {
 
         when(customerDAOImpl.checkAccStatus(null,"ale")).thenReturn(true);
-        when(customerDAOImpl.viewAccBalance("ale")).thenReturn(-1d);
+        when(customerDAOImpl.viewAccBalance("ale",null)).thenReturn(-1d);
         Assertions.assertThrows(Exception.class,()->{
             mockedCustomerService.postTransfer(null,null,0,"ale");});
 
@@ -181,7 +181,7 @@ public class Tests {
     final void postTransfersMock3() throws ServiceException {
 
         when(customerDAOImpl.checkAccStatus(null,"ale")).thenReturn(true);
-        when(customerDAOImpl.viewAccBalance("ale")).thenReturn(11d);
+        when(customerDAOImpl.viewAccBalance("ale",null)).thenReturn(11d);
         Assertions.assertThrows(Exception.class,()->{
             mockedCustomerService.postTransfer(null,null,-10,"ale");});
 

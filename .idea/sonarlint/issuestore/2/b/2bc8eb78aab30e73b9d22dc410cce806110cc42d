@@ -1,0 +1,9 @@
+
+M
+java:S1128	"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Â„×–/
+\
+java:S1126!"AReplace this if-then-else statement by a single return statement.(‹Çªûøÿÿÿÿ
+c
+java:S1126*"AReplace this if-then-else statement by a single return statement.(‘ú§ÿşÿÿÿÿ8ïÄ­–/
+=
+java:S1068"'Remove this unused "log" private field.(£Â –

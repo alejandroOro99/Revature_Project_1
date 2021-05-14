@@ -13,3 +13,14 @@
 2021-05-13 10:22:44,636 [               Main.java:qtp684874119-19:346] - |ale accepted account:1234, username: 1234
 2021-05-13 14:49:11,597 [               Main.java:qtp684874119-13:110] - Bank account created, name: tanjiro balance: $1100
 2021-05-13 14:51:14,325 [               Main.java:qtp684874119-29:437] - |ale accepted account:tanjiro, username: nezuko
+2021-05-13 21:14:39,677 [               Main.java:qtp684874119-27:110] - Bank account created, name: ale balance: $10
+2021-05-13 21:18:19,859 [               Main.java:qtp684874119-16:439] - |ale accepted account:ale, username: ss
+2021-05-13 21:19:16,098 [               Main.java:qtp684874119-15:128] - ss deposited $10 in ale
+2021-05-13 21:19:34,864 [               Main.java:qtp684874119-16:145] - ss withdrew $10 from ale
+2021-05-13 21:19:57,505 [               Main.java:qtp684874119-15:173] - ss posted $1.0 to 1234 from ale
+2021-05-13 21:21:01,802 [               Main.java:qtp684874119-15:189] - 1234 accepted transfer from ale
+2021-05-14 08:15:17,370 [               Main.java:qtp684874119-24:110] - Bank account created, name: aleAcc balance: $100
+2021-05-14 08:16:59,959 [               Main.java:qtp684874119-26:439] - |ale accepted account:aleAcc, username: aleAcc
+2021-05-14 08:17:48,145 [               Main.java:qtp684874119-19:128] - aleAcc deposited $10 in aleAcc
+2021-05-14 08:29:30,128 [               Main.java:qtp684874119-19:174] - aleAcc posted $10.0 to 1234 from aleAcc
+2021-05-14 08:44:05,755 [               Main.java:qtp684874119-27:190] - 1234 accepted transfer from aleAcc

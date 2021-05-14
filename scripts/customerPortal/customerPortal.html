@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Customer Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href = "customerPortal.css" rel = "stylesheet">
     <script type = "text/javascript" >  
         function preventBack() { window.history.forward(); }  
         setTimeout("preventBack()", 0);  
@@ -13,9 +15,7 @@
 </head>
 <body>
     
-    <h1 id = "customerPortal">
-
-    </h1>
+    <h1 id = "customerPortal"> </h1>
     <br>
     <form name = "viewAccForm">
         <label>Enter account name to view current balance</label>
@@ -30,6 +30,7 @@
         <input name = "depositAmountInput" type = "text">
         <button id = "depositBtn" type = "button">Submit</button>
     </form>
+    <br>
     <form name = "withdrawForm">
         <label>Enter account name to withdraw from</label>
         <input name = "accWithdrawInput" type = "text">
@@ -37,6 +38,7 @@
         <input name = "amountWithdrawInput" type = text>
         <button id = "withdrawBtn" type = "button">Submit</button>
     </form>
+    <br>
     <form name = "applyBankAccForm">
         Apply for a new bank account!
         <br>
@@ -52,7 +54,7 @@
 
     <form name = "postTransferForm">
         <br>
-        Post a Transfer
+        Post a Transfer:
         <br>
         <label>Enter username of account to transfer to</label>
         <input name = "usernameInput" type = "text">
@@ -63,8 +65,9 @@
         <button id = "postTransferBtn" type = "button">Submit</button>
 
     </form>
+    <br>
     <form name = "acceptTransferForm">
-        Accept a transfer
+        Accept a transfer:
         <br>
         <label>Name of account whose transfer you accept</label>
         <input name = "accNameInput" type = "text">
@@ -75,6 +78,7 @@
     <br>
     <label>View previous transactions</label>
     <button id = "viewTransactionsBtn" type = "button">Submit</button>
+    <br>
     <br>
     <button id = "logoutBtn" type = "button">Logout</button>
 

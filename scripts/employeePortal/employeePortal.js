@@ -130,7 +130,7 @@ byUsernameBtn.addEventListener("click",()=>{
 //transactions by type
 byTypeBtn.addEventListener("click",()=>{
     let type = document.forms["transactionsForm"]["byTypeInput"].value;
-    let url = "http://localhost:9000/employee/transactionsUsername/"+type;//random parameter at the end, bug with non-parameter endpoint in Javalin
+    let url = "http://localhost:9000/employee/transactionsDate/"+type;//random parameter at the end, bug with non-parameter endpoint in Javalin
     console.log(url);
     
     fetch(url)
@@ -172,6 +172,6 @@ allTransactionsBtn.addEventListener("click",()=>{
 
 //logout
 logoutBtn.addEventListener("click",()=>{
-    window.location.replace("app.html");
+    window.location.replace("../employeeApp/employeeApp.html");
 });
 

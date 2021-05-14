@@ -9,9 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class CustomerDAOImpl implements CustomerDAO{
 
@@ -168,13 +166,14 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
 
     @Override
-    public double viewAccBalance(String name) {
+    public double viewAccBalance(String name, Customer customer) {
 
         try(Connection connection = DBConnection.getConnection()){
 
-            String sql = "SELECT balance from \"BankApp\".bankaccounts WHERE name=?";
+            String sql = "SELECT balance from \"BankApp\".bankaccounts WHERE name=? and bankaccid=?";
             PreparedStatement queryAccSQL = connection.prepareStatement(sql);
             queryAccSQL.setString(1,name);
+            queryAccSQL.setLong(2,customer.getBankAccId());
             ResultSet resultSet = queryAccSQL.executeQuery();
 
             if(resultSet.next()){
@@ -365,9 +364,11 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
 
     @Override
-    public List<String> displayCustomerByTransfer(Customer customer) {
+    public Map<String,Double> displayCustomerByTransfer(Customer customer) {
 
         List<String> listOfUsernames = new LinkedList<>();
+        List<Double> listAmount = new ArrayList<>();
+        Map<String,Double> mapResults = new HashMap<String,Double>();
             try(Connection connection = DBConnection.getConnection()){
                 String sql = "SELECT senderaccname,balance FROM \"BankApp\".transfers WHERE recipientid=?";
                 PreparedStatement displaySQL = connection.prepareStatement(sql);
@@ -375,13 +376,14 @@ public class CustomerDAOImpl implements CustomerDAO{
                 ResultSet resultSet = displaySQL.executeQuery();
 
                 while(resultSet.next()){
-                    listOfUsernames.add(resultSet.getString("senderaccname"));
-
+                    //listOfUsernames.add(resultSet.getString("senderaccname"));
+                    mapResults.put(resultSet.getString("senderaccname"),
+                            resultSet.getDouble("balance"));
                     //log.debug(resultSet.getString("senderaccname")+
                           //  " amount: $"+resultSet.getDouble("balance"));
                 }
                 log.debug(listOfUsernames);
-                return listOfUsernames;
+                return mapResults;
 
             }catch(SQLException e){
                 log.debug(e);

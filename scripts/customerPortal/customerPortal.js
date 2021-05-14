@@ -71,7 +71,7 @@ depositBtn.addEventListener("click",()=>{
         if(json == "true"){
             document.getElementById("balanceDiv").innerHTML = "<p>Succesfully deposited: $"+data.depositAmount+"</p>";
         }else{
-            document.getElementById("balanceDiv").innerHTML = "<p>Incorrect input</p>";
+            document.getElementById("balanceDiv").innerHTML = json;
         }
 
        
@@ -178,9 +178,16 @@ viewTransfersBtn.addEventListener("click",()=>{
     fetch(url)
         .then(res => res.json())
         .then(response =>{
-            
+            console.log(response);
+            let data="";
             if(response != null){
-                document.getElementById("balanceDiv").innerHTML = "<p>"+response+"</p>";
+
+                //parse hashmap from backend
+                keys = Object.keys(response);
+                keys.forEach(i=>{
+                    data+=i+": $"+response[i];
+                });
+                document.getElementById("balanceDiv").innerHTML = "<p>"+data+"</p>";
             }
         }); 
 
@@ -226,5 +233,5 @@ acceptTransferBtn.addEventListener("click",()=>{
 
 //logout
 logoutBtn.addEventListener("click",()=>{
-    window.location.replace("app.html");
+    window.location.replace("../app/app.html");
 });
