@@ -1,5 +1,4 @@
 package driver;
-import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import controller.JlinController;
 import dao.BankAccDAO;
@@ -25,7 +24,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static Logger log = Logger.getLogger(CustomerDAOImpl.class);
+    private static Logger log = Logger.getLogger(Main.class);
     public static CustomerService customerService = new CustomerServiceImpl();
     public static Customer customer;
     public static JsonObject jsonObject;

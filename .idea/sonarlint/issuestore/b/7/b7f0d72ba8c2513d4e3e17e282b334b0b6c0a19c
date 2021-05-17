@@ -1,0 +1,61 @@
+
+P
+java:S1444"5Make this "public static customerService" field final(™«¬ûÿÿÿÿ
+D
+java:S1444".Make this "public static customer" field final(×²¿€
+K
+java:S1444"0Make this "public static jsonObject" field final(ëÕÈ–ùÿÿÿÿ
+O
+java:S1444"4Make this "public static bankAccService" field final(Àéæôûÿÿÿÿ
+h
+java:S1192Z"MDefine a constant instead of duplicating this literal "login failed" 3 times.(ËË«·ÿÿÿÿÿ
+_
+java:S1192@"IDefine a constant instead of duplicating this literal "password" 5 times.(•á®
+_
+java:S1192"HDefine a constant instead of duplicating this literal "success" 4 times.(¤°èÅ
+]
+java:S1192"GDefine a constant instead of duplicating this literal "Date: " 4 times.(û£€
+c
+java:S1192h"HDefine a constant instead of duplicating this literal "accName" 5 times.(Ş©áåúÿÿÿÿ
+`
+java:S11925"JDefine a constant instead of duplicating this literal "username" 11 times.(á·¯š
+l	java:S117™"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„ÛÒÇüÿÿÿÿ
+l	java:S117š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜È©ÿÿÿÿÿ
+g	java:S117›"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íŞŠÏ
+v
+java:S1104"[Make customerService a static final constant or non-public and provide accessors if needed.(™«¬ûÿÿÿÿ
+j
+java:S1104"TMake customer a static final constant or non-public and provide accessors if needed.(×²¿€
+q
+java:S1104"VMake jsonObject a static final constant or non-public and provide accessors if needed.(ëÕÈ–ùÿÿÿÿ
+u
+java:S1104"ZMake bankAccService a static final constant or non-public and provide accessors if needed.(Àéæôûÿÿÿÿ
+h
+java:S3776."RRefactor this method to reduce its Cognitive Complexity from 72 to the 15 allowed.(Çµí‘
+:
+java:S2386="%Make member "jsonObject" "protected".(Ô’Ğ
+Z
+java:S1858´"C"pathParam" returns a string, there's no need to call "toString()".(óàòÌ
+Z
+java:S1858µ"C"pathParam" returns a string, there's no need to call "toString()".( ±˜¹
+R	java:S125¹"<This block of commented-out lines of code should be removed.(»ÎşÊ
+Z
+java:S1858ê"C"pathParam" returns a string, there's no need to call "toString()".(›´ÿ©
+_
+java:S1858ì"C"pathParam" returns a string, there's no need to call "toString()".(ìí¡ğÿÿÿÿÿ
+8
+java:S1116¤"Remove this empty statement.(ÁÕòåÿÿÿÿÿ
+_
+java:S1858µ"C"pathParam" returns a string, there's no need to call "toString()".(ëÎÔùÿÿÿÿ
+L
+java:S1481Ç"5Remove this unused "customerTransfer" local variable.(¿µ‡É
+G
+java:S1481‹"0Remove this unused "arrDeposits" local variable.(€¸´ó
+G
+java:S1481É"0Remove this unused "arrDeposits" local variable.(€¸´ó
+J
+java:S1481è"3Remove this unused "bankAccDAOC1C3" local variable.(ËÄÖ¤
+G
+java:S1481†"0Remove this unused "arrDeposits" local variable.(€¸´ó
+E
+java:S1481‡")Remove this unused "date" local variable.(×èŠıÿÿÿÿ

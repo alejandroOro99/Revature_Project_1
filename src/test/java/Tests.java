@@ -1,15 +1,10 @@
-import dao.BankAccDAO;
-import dao.BankAccDAOImpl;
 import dao.CustomerDAO;
 import dao.CustomerDAOImpl;
 import exception.ServiceException;
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -20,51 +15,49 @@ import static org.mockito.Mockito.*;
 
 public class Tests {
     private static CustomerDAO customerDAO;
-    private static BankAccDAO bankAccDAO;
     private static CustomerService customerService = new CustomerServiceImpl();
 
     @BeforeAll
     public static void setup(){
         customerDAO = new CustomerDAOImpl();
-        bankAccDAO = new BankAccDAOImpl();
     }
 
     @Test
-    public void testSelectCustomerFalse(){
+    void testSelectCustomerFalse(){
         String username = "";
         Assertions.assertEquals(null,customerDAO.getCustomerByUsername(username));
     }
     @Test
-    public void testCheckAccStatus(){
+    void testCheckAccStatus(){
         Customer customer = new Customer(5775280242015442471l);
         String account = "orozcoAcc";
         Assertions.assertEquals(false,customerDAO.checkAccStatus(customer, account));
     }
     @Test
-    public void testCheckAccStatusFalse(){
+    void testCheckAccStatusFalse(){
         Customer customer = new Customer(5775280242015442471l);
         String account = "yu";
         Assertions.assertEquals(false,customerDAO.checkAccStatus(customer, account));
     }
     @Test
-    public void testIsUsernameAvailable(){
+    void testIsUsernameAvailable(){
         String username ="";
         Assertions.assertEquals(true, customerDAO.isUsernameAvailable(username));
     }
     @Test
-    public void testIsUsernameAvailableFalse(){
+    void testIsUsernameAvailableFalse(){
         String username = "1234";
         Assertions.assertEquals(false, customerDAO.isUsernameAvailable(username));
     }
     @Test
-    public void testDeposit1(){
+    void testDeposit1(){
         Customer customer = new Customer(5775280242015442471l);
         String name = "orozcoAcc";
         double amount = 10;
         Assertions.assertEquals(true,customerDAO.deposit(name, amount, customer));
     }
     @Test
-    public void testDeposit3(){
+    void testDeposit3(){
         Customer customer = new Customer(5775280242015442471l);
         String name = "orozcoAcc";
         double amount = -1;
@@ -72,21 +65,21 @@ public class Tests {
         Assertions.assertEquals(true,customerDAO.deposit(name, amount, customer));
     }
     @Test
-    public void testAcceptTransfer1(){
+    void testAcceptTransfer1(){
         Customer customer = new Customer(-1033555330049077587l);
         String accepted = "orozcoAcc";
         String accName = "yu";
         Assertions.assertEquals(false,customerDAO.acceptTransfer(customer, accName, accepted));
     }
     @Test
-    public void testAcceptTransfer2(){
+    void testAcceptTransfer2(){
         Customer customer = new Customer(-1033555330049077587l);
         String accepted = "yu";
         String accName = "orozcoAcc";
         Assertions.assertEquals(false,customerDAO.acceptTransfer(customer, accName, accepted));
     }
     @Test
-    public void testWithdraw() throws ServiceException {
+    void testWithdraw() throws ServiceException {
         Assertions.assertThrows(Exception.class,()->{
             customerDAO.withdraw("",null,-1);});
     }

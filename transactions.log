@@ -34,3 +34,23 @@
 2021-05-14 10:54:31,427 [               Main.java:qtp684874119-39:109] - Bank account created, name: ale123 balance: $1
 2021-05-14 11:09:33,045 [               Main.java:qtp684874119-46:109] - Bank account created, name: john balance: $10
 2021-05-14 11:11:16,271 [               Main.java:qtp684874119-46:426] - |ale accepted account:john, username: 12345
+2021-05-14 13:29:57,225 [               Main.java:qtp684874119-24:124] - 1234 deposited $10 in 1234
+2021-05-14 13:30:14,160 [               Main.java:qtp684874119-24:141] - 1234 withdrew $10 from 1234
+2021-05-14 13:30:33,252 [               Main.java:qtp684874119-24:108] - Bank account created, name: 1234Acc balance: $10
+2021-05-14 13:31:33,777 [               Main.java:qtp684874119-19:425] - |ale accepted account:1234Acc, username: 1234
+2021-05-14 13:32:35,794 [               Main.java:qtp684874119-19:124] - 1234 deposited $10 in 1234Acc
+2021-05-14 14:53:52,616 [               Main.java:qtp684874119-28:108] - Bank account created, name: testAcc balance: $10
+2021-05-14 14:54:31,616 [               Main.java:qtp684874119-28:425] - |ale accepted account:testAcc, username: 1234
+2021-05-14 14:55:58,666 [               Main.java:qtp684874119-29:168] - 1234 posted $5.0 to 1234 from testAcc
+2021-05-14 14:56:28,706 [               Main.java:qtp684874119-18:184] - 1234 accepted transfer from testAcc
+2021-05-14 15:01:12,093 [               Main.java:qtp684874119-32:168] - 1234 posted $10.0 to 1234 from 1234
+2021-05-14 15:01:43,603 [               Main.java:qtp684874119-18:184] - 1234 accepted transfer from 1234
+2021-05-14 15:04:32,100 [               Main.java:qtp684874119-18:168] - 1234 posted $10.0 to 1234 from 1234
+2021-05-14 15:05:20,066 [               Main.java:qtp684874119-26:184] - 1234 accepted transfer from 1234
+2021-05-14 15:34:01,812 [               Main.java:qtp684874119-31:108] - Bank account created, name: test1 balance: $10
+2021-05-14 15:35:43,721 [               Main.java:qtp684874119-31:425] - |bob accepted account:test1, username: test
+2021-05-14 15:37:31,885 [               Main.java:qtp684874119-31:124] - test deposited $10 in test1
+2021-05-14 15:37:43,454 [               Main.java:qtp684874119-24:141] - test withdrew $10 from test1
+2021-05-14 15:38:15,484 [               Main.java:qtp684874119-31:168] - test posted $10.0 to 1234 from test1
+2021-05-14 15:39:05,292 [               Main.java:qtp684874119-31:184] - 1234 accepted transfer from test1
+2021-05-14 15:42:12,772 [               Main.java:qtp684874119-19:108] - Bank account created, name: test2 balance: $10
