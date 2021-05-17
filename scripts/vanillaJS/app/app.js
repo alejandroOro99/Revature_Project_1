@@ -1,6 +1,12 @@
 let loginBtn = document.getElementById("loginBtn");
 let applyBtn = document.getElementById("applyBtn");
 
+//set api messages constants for messages between server and browser
+let apiMessages = new Map();
+apiMessages.set("success",1);
+apiMessages.set("failure",0);
+apiMessages.set("exception",-1);
+
 
 function saveLogin(username, password){
 
@@ -36,12 +42,15 @@ loginBtn.addEventListener("click",()=>{
                 let jsonResponse = json;
                 console.log(jsonResponse)
         
-                if(jsonResponse==="login success"){
+                if(jsonResponse === apiMessages.get("success")){
                     saveLogin(data.username, data.password);
                     window.location.replace("../customerPortal/customerPortal.html"); 
-                }else{
+                }else if(jsonResponse === apiMessages.get("failure")){
                     console.log("Username or password incorrect");
                     document.getElementById("bodyDiv").innerHTML = "<p>Username or password incorrect</p>";
+                }else{
+                    console.log("Exception thrown");
+                    document.getElementById("bodyDiv").innerHTML = "<p>Server error</p>";
                 }
                
             } );
@@ -75,7 +84,12 @@ applyBtn.addEventListener("click",()=>{
     
             console.log(json);
 
-            document.getElementById("bodyDiv").innerHTML = json;
+            if(json === apiMessages.get("success")){
+                document.getElementById("bodyDiv").innerHTML = "<p>Applied successfully</p>";
+            }else if(json === apiMessages.get("failure")){
+                document.getElementById("bodyDiv").innerHTML = "<p>Username already in use</p>";
+            }
+            
         } );
     }else{
         console.log("All fields must have values");

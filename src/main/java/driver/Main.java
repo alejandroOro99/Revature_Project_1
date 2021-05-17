@@ -19,17 +19,20 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
 
 public class Main {
+    //map of constants for success/failure/exception messages between browser and Javalin.
+    private static Map<String, Integer> apiMessages = new HashMap<>();
+
     private static Logger log = Logger.getLogger(Main.class);
     public static CustomerService customerService = new CustomerServiceImpl();
     public static Customer customer;
     public static JsonObject jsonObject;
     public static BankAccService bankAccService = new BankAccServiceImpl();
 
+    //logger and file that will be logged to for all transactions
     private static final Logger transactions = Logger.getLogger("transactionsLogger");
     private static File file = new File(
             "transactions.log");
@@ -41,6 +44,10 @@ public class Main {
         } catch (FileNotFoundException e) {
             log.debug(e);
         }
+        //initialize message constants to be sent in json format to client browser
+        apiMessages.put("success",1);
+        apiMessages.put("failure",0);
+        apiMessages.put("exception",-1);
     }
 
     public static void main(String[] args) {
@@ -67,9 +74,9 @@ public class Main {
 
             if(customerService.isUsernameAvailable(username)){
                 customerService.applyCustomerAcc(firstname, lastname, username, password);
-                ctx.json("account created");
+                ctx.json(apiMessages.get("success"));//let browser know an account was created
             }else{
-                ctx.json("username not available");
+                ctx.json(apiMessages.get("failure"));//let browser know something went wrong
             }
 
 
@@ -85,13 +92,14 @@ public class Main {
                 customer = customerService.login(username, password);
 
                 if(customer != null){
-                    ctx.json("login success");
+                    ctx.json(apiMessages.get("success"));
                 }else{
-                    ctx.json("login failed");
+                    ctx.json(apiMessages.get("failure"));
                     customer = null;
                 }
             }catch(Exception e){
                 e.printStackTrace();
+                ctx.json(apiMessages.get("exception"));
             }
 
         });
@@ -106,10 +114,10 @@ public class Main {
 
                 log.debug(customerService.applyBankAcc(accName, accBalance, customer));
                 transactions.info("Bank account created, name: "+accName+" balance: $"+accBalance);
-                ctx.json("applyAcc success");
+                ctx.json(apiMessages.get("success"));
             }catch(Exception e){
                 log.debug(e);
-                ctx.json(String.valueOf(e));
+                ctx.json(apiMessages.get("exception"));
             }
 
         });
@@ -124,7 +132,7 @@ public class Main {
                 transactions.debug(customer.getUsername()+" deposited $"+depositAmount+" in "+accName);
             }catch(Exception e){
                 e.printStackTrace();
-                ctx.json(String.valueOf(e));
+                ctx.json(apiMessages.get("exception"));
             }
         });
 
@@ -139,9 +147,10 @@ public class Main {
 
                 customerService.withdraw(accName, customer, withdrawAmount);
                 transactions.debug(customer.getUsername()+" withdrew $"+withdrawAmount+" from "+accName);
-                ctx.json("success");
+                ctx.json(apiMessages.get("success"));
             }catch(ServiceException e){
                 ctx.json(String.valueOf(e));
+                ctx.json(apiMessages.get("exception"));
             }
 
         });
@@ -152,7 +161,7 @@ public class Main {
                 String viewAccBalanceName = ctx.pathParam("accName");
                 ctx.json(customerService.viewAccBalance(viewAccBalanceName,customer));
             }catch(Exception e){
-                ctx.json(String.valueOf(e));
+                ctx.json(apiMessages.get("exception"));
             }
         });
 
@@ -166,9 +175,9 @@ public class Main {
                 Customer recipient = customerService.getCustomerByUsername(username);
                 customerService.postTransfer(customer, recipient, transferAmount, senderAcc);
                 transactions.debug(customer.getUsername()+" posted $"+transferAmount+" to "+username+" from "+senderAcc);
-                ctx.json("success");
+                ctx.json(apiMessages.get("success"));
             }catch(NumberFormatException | ServiceException e){
-                ctx.json(String.valueOf(e));
+                ctx.json(apiMessages.get("exception"));
             }
         });
 
@@ -182,14 +191,14 @@ public class Main {
 
                 if(customerService.acceptTransfer(customer,accToDeposit, accName)){
                     transactions.debug(customer.getUsername()+" accepted transfer from "+accName);
-                    ctx.json("success");
+                    ctx.json(apiMessages.get("success"));
                 }else{
-                    ctx.json("failed");
+                    ctx.json(apiMessages.get("failure"));
                 }
 
 
             }catch(Exception e){
-                ctx.json(String.valueOf(e));
+                ctx.json(apiMessages.get("exception"));
             }
         });
 
@@ -213,12 +222,12 @@ public class Main {
                 if(customerService.isUsernameAvailable(username,1)){
                     ctx.json(customerService.applyCustomerAcc(firstname,lastname, username, password, employeenum));
                 }else{
-                    ctx.json("username in use");
+                    ctx.json(apiMessages.get("failure"));
                 }
 
 
             }catch(Exception e){
-                ctx.json(String.valueOf(e));
+                ctx.json(apiMessages.get("exception"));
             }
         });
 
@@ -234,16 +243,16 @@ public class Main {
 
 
                 if(customer != null){
-                    ctx.json("login success");
+                    ctx.json(apiMessages.get("success"));
                 }else{
                     customer = null;
-                    ctx.json("login failed");
+                    ctx.json(apiMessages.get("failure"));
                 }
 
 
             }catch(Exception e){
                 e.printStackTrace();
-                ctx.json("login failed");
+                ctx.json(apiMessages.get("exception"));
                 customer = null;
             }
         });
@@ -316,6 +325,7 @@ public class Main {
                 fileScanner = new Scanner(file);
             } catch (FileNotFoundException e) {
                 log.debug(e);
+                ctx.json(apiMessages.get("exception"));
             }
             ctx.json(jsonObject);
         });
@@ -350,6 +360,7 @@ public class Main {
                 fileScanner = new Scanner(file);
             } catch (FileNotFoundException e) {
                 log.debug(e);
+                ctx.json(apiMessages.get("exception"));
             }
             ctx.json(jsonObject);
         });
@@ -425,7 +436,7 @@ public class Main {
                 transactions.debug("|"+customer.getUsername()+" accepted account:"+acceptedAccounts+
                         ", username: "+acceptAccUsername);
             }catch(Exception e){
-                ctx.json(String.valueOf(e));
+                ctx.json(apiMessages.get("exception"));
             }
 
         });
