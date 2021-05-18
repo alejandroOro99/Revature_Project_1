@@ -4,27 +4,20 @@
 Project 1 is a banking simulation app where an user can create accounts, deposit, withdraw, post and accept transfers. Employees can also accept accounts and see all transactions
 
 ## Technologies Used
-Back-end:
-Front-end:
+Back-end: Java, Javalin, JDBC, PostgreSQL.
+Front-end: Javascript, HTML/CSS/Bootstrap, Fetch API.
+Testing/Logging: JUnit, Mockito, Log4J.
 
 ## Features
 
-Awesome feature 1
-Awesome feature 2
-Awesome feature 3
+Customer deposit, withdraw, transfer, apply.
+Employee accept accounts, see transactions of all user, see user accounts.
 
 ## To-do list:
 
-Wow improvement to be done 1
-Wow improvement to be done 2
+Better filtering for transactions for both employees and customers.
 
 ## Getting Started
-git clone 
+`git clone https://github.com/alejandroOro99/Revature_Project_1.git`
+That command will cone the project in your computer, after it is cloned you can run `gradlew run` in the main repository where src is located. Alternatively, in `build/libs` running the command `java -jar name-of-project.jar` where name-of-project is the name of the jar located in that directory.
 
-Be sure to include BOTH Windows and Unix command
-Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
-
-All the code required to get started
-Images of what it should look like
-Usage
-Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
