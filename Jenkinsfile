@@ -1,4 +1,4 @@
 node {
  checkout scm
- sh "./gradlew clean build"
+ sh "sudo ./gradlew clean build"
 }
