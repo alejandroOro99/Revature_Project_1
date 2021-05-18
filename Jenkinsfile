@@ -1,10 +1,4 @@
-pipeline {
-    any
-    stages {
-        stage('build') {
-            steps {
-                sh 'gradle build'
-            }
-        }
-    }
+node {
+ checkout scm
+ sh "./gradlew clean build"
 }
