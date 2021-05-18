@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh '/var/lib/jenkins/workspace/test-pipeline_main/gradlew run'
+                sh '/var/lib/jenkins/workspace/test-pipeline_main/gradlew clean build'
             }
         }
     }
