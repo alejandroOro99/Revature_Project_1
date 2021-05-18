@@ -3,8 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh "chmod +x ./jenkins/workspace/test-pipeline_main"
-                sh './gradlew clean build'
+                sh '/var/lib/jenkins/workspace/test-pipeline_main/gradlew run'
             }
         }
     }
