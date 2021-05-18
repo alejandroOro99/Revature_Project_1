@@ -1,3 +1,3 @@
 node {
- sh "sudo ./gradlew clean build"
+ sh "sudo -n ./gradlew clean build"
 }
