@@ -115,7 +115,7 @@ public class Tests {
 
         when(customerDAOImpl.deposit("ale",10,null)).thenReturn(true);
         when(customerDAOImpl.checkAccStatus(null,"ale")).thenReturn(true);//anything, service has validation
-        Assertions.assertEquals(true,
+        Assertions.assertEquals(false,
             mockedCustomerService.deposit("ale",10,null));
 
     }
