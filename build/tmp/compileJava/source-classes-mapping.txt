@@ -2,8 +2,8 @@ service/BankAccServiceImpl.java
  service.BankAccServiceImpl
 db_connection/DBConnection.java
  db_connection.DBConnection
-controller/JlinController.java
- controller.JlinController
+driver/Main.java
+ driver.Main
 dao/CustomerDAO.java
  dao.CustomerDAO
 dao/BankAccDAO.java
@@ -24,5 +24,5 @@ dao/CustomerDAOImpl.java
  dao.CustomerDAOImpl
 service/BankAccService.java
  service.BankAccService
-driver/Main.java
- driver.Main
+controller/JlinController.java
+ controller.JlinController

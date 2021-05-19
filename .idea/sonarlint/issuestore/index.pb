@@ -25,13 +25,5 @@ Z
 -src/main/java/exception/ServiceException.java,6\e\6e1ff174f70f3c82d06f0d6dfd6e2d4ab2f3bfbd
 @
 transactions.log,7\9\7965e9fec2ba1f0c61a4318c7555152a1eda2951
-<
-build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 ^
 .src/main/java/service/CustomerServiceImpl.java,2\b\2bc8eb78aab30e73b9d22dc410cce806110cc42d
-V
-&src/main/java/dao/CustomerDAOImpl.java,6\0\60bedaf59c9eb303067f7aacde8ca3afb2dd45fb
-H
-src/test/java/Tests.java,c\1\c173e52bd8a670e90135fe46f42f1df9295b7bf3
-N
-src/main/java/driver/Main.java,b\7\b7f0d72ba8c2513d4e3e17e282b334b0b6c0a19c

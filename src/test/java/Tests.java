@@ -22,6 +22,7 @@ public class Tests {
         customerDAO = new CustomerDAOImpl();
     }
 
+    /*
     @Test
     void testSelectCustomerFalse(){
         String username = "";
@@ -83,7 +84,7 @@ public class Tests {
         Assertions.assertThrows(Exception.class,()->{
             customerDAO.withdraw("",null,-1);});
     }
-
+*/
     //mockito tests
     @InjectMocks
     CustomerService mockedCustomerService = new CustomerServiceImpl();
