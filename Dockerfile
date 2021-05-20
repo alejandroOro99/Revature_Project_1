@@ -1,5 +1,5 @@
 FROM alpine
 
-COPY index.html /usr/bin
+COPY index.html /usr/local/tomcat/webapps
 
 
