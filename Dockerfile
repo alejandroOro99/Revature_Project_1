@@ -1,5 +1,5 @@
-FROM nginx:alpine
+FROM nginx:latest
 
-COPY dockerTest.html /usr/share/nginx/html
+COPY dockerTest.html /usr/share/nginx/html/index.html
 
 
