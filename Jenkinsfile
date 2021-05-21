@@ -2,7 +2,7 @@ node{
     def buildNum = BUILD_NUMBER
     stage("Build app"){
         sh './gradlew clean build'
-    }s
+    }ss
     
     stage("build docker image"){
         sh "docker build -t alejandrooro99/project1:${buildNum} ."
