@@ -3,7 +3,7 @@ node{
     stage("Build app"){
         sh './gradlew clean build'
     }
-    
+    s
     stage("build docker image"){
         sh "docker build -t alejandrooro99/project1:${buildNum} ."
         
