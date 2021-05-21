@@ -1,8 +1,5 @@
 node{
     def buildNum = BUILD_NUMBER
-    stage("Git clone"){
-        git url: 'https://github.com/alejandroOro99/Revature_Project_1', branch: 'main'
-    }
     stage("Build app"){
         sh './gradlew clean build'
     }
